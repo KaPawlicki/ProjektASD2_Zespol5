@@ -8,7 +8,7 @@ const int INF = INT_MAX;
 
 void printPath(vector<vector<int>>& next, int u, int v) {
     if (next[u][v] == -1) {
-        cout << "Brak ścieżki";
+        cout << "Brak ściezki";
         return;
     }
     vector<int> path;
@@ -69,9 +69,9 @@ int main() {
     cin >> v >> u;
     v--, u--;
 
-    cout << "Najkrótsza ścieżka między " << v + 1 << " a " << u + 1 << ": ";
+    cout << "Najkrotsza sciezka miedzy " << v + 1 << " a " << u + 1 << ": ";
     if (result[v][u] == INF) {
-        cout << "Brak ścieżki\n";
+        cout << "Brak sciezki\n";
     } else {
         cout << result[v][u] << " ";
         printPath(next, v, u);
@@ -94,7 +94,7 @@ int main() {
         }
     }
 
-    cout << "Najkrótszy cykl przez " << w + 1 << ": ";
+    cout << "Najkrotszy cykl przez " << w + 1 << ": ";
     if (minCycle == INF) {
         cout << "Brak cyklu\n";
     } 
