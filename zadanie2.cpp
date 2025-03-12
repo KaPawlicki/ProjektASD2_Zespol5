@@ -31,7 +31,7 @@ int main() {
     vector<vector<int>> next(vertices, vector<int>(vertices, -1));
 
     for (int i = 0; i < vertices; i++) {
-        result[i][i] = 0;
+        //result[i][i] = 0;
         next[i][i] = i;
     }
     
