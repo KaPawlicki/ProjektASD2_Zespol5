@@ -1,3 +1,41 @@
 .root {
-    -fx-background-color: #877878;
+    -fx-background-image: url("../images/main-menu-background.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+Button {
+    -fx-background-color: rgba(76, 55, 44, 0.78);
+    -fx-text-fill: rgba(255, 255, 255, 0.91);
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+    -fx-background-radius: 6;
+}
+
+Button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(73, 53, 43, 0.84), 11, 0.55, 0, 0);
+}
+
+.optionButtonsContainer {
+    -fx-alignment: bottom-center;
+    -fx-spacing: 25;
+    -fx-padding: 60;
+}
+
+.optionButtonsContainer Button {
+    -fx-pref-width: 250;
+    -fx-pref-height: 80;
+}
+
+.startPane {
+    -fx-alignment: bottom-center;
+    -fx-padding: 30;
+}
+
+.startPane Button {
+    -fx-pref-width: 120;
+    -fx-pref-height: 80;
 }

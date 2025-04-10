@@ -12,15 +12,15 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         SceneManager.setStage(stage);
-        SceneManager.setTitle("PIWO");
-        SceneManager.setSize(800, 600);
+        SceneManager.setTitle("BeerLand");
+        SceneManager.setSize(1200, 800);
         SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
     }
 
     public static void main(String[] args) {
 
         //DOPOKI CHCECIE TESTOWAC SWOJE KLASY KONSOLOWO NIECH TO BEDZIE ZAKOMENTOWANE
-        //launch();
+        launch();
 
         ShireMap map = new ShireMap();
         Node f1 = new Field("field", new Point(1, 2), 20);

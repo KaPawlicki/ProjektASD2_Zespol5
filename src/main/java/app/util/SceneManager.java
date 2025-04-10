@@ -24,6 +24,7 @@ public class SceneManager {
         if (primaryStage != null) {
             primaryStage.setWidth(width);
             primaryStage.setHeight(height);
+            primaryStage.setResizable(false);
         }
     }
 

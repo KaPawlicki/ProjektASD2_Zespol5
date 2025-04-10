@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.controller.MainMenuController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<?import javafx.scene.layout.AnchorPane?>
 
-  <Label fx:id="text"/>
-  <Button text="test" onAction="#onButtonClick"/>
-</VBox>
+<?import javafx.scene.layout.Pane?>
+<AnchorPane fx:controller="app.controller.MainMenuController" styleClass="root" xmlns:fx="http://javafx.com/fxml">
+    <VBox styleClass="optionButtonsContainer" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0">
+      <Button text="Wczytaj dane z pliku" fx:id="fromFileButton"/>
+      <Button text="Wpisz dane ręcznie" fx:id="uploadManuallyButton"/>
+      <Button text="Wybierz poprzednią symulacje" fx:id="fromPastScenarioButton"/>
+    </VBox>
+
+    <Pane styleClass="startPane" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">
+      <Button text="Zacznij" fx:id="startButton" />
+    </Pane>
+
+</AnchorPane>
+
