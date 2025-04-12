@@ -20,14 +20,14 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         //DOPOKI CHCECIE TESTOWAC SWOJE KLASY KONSOLOWO NIECH TO BEDZIE ZAKOMENTOWANE
-        launch();
+        //launch();
 
         ShireMap map = new ShireMap();
         Node f1 = new Field("field", new Point(1, 2), 20);
         map.addNode(f1);
         Node f2 = new Field("field", new Point(1, 3), 20);
         map.addNode(f2);
-        Node b1 = new Brewery("brewery", new Point(1, 4), 50);
+        Node b1 = new Brewery("brewery", new Point(1, 4));
         map.addNode(b1);
         Node i1 = new Inn("inn", new Point(1, 5));
         map.addNode(i1);

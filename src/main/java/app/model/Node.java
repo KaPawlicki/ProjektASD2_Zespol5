@@ -6,10 +6,10 @@ import java.util.List;
 
 public abstract class Node {
     private static int nextID = 0;
-    private int id;
+    private final int id;
     private String type;
     private Point position; // pozycja jest reprezentowana jako punkt na płaszczyźnie w postaci P = (x, y)
-    protected List<Edge> listOfEdges;
+    protected List<Edge> listOfEdges; // lista wszystkich krawedzi wychodzacych z wierzcholka
 
     public Node(String type, Point position) {
         this.id = nextID;
@@ -23,7 +23,6 @@ public abstract class Node {
     public String getType() {return type;}
     public Point getPosition() {return position;}
 
-    public void setId(int id) {this.id = id;}
     public void setType(String type) {this.type = type;}
     public void setPosition(Point position) {this.position = position;}
     public void setPosition(int x, int y) {this.position = new Point(x, y);}

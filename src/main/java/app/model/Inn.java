@@ -11,7 +11,11 @@ public class Inn extends Node{
     }
 
     public int getAmountOfBeer() {return amountOfBeer;}
-    public void setAmountOfBeer(int amountOfBeer) {this.amountOfBeer = amountOfBeer;}
+    public void setAmountOfBeer(int amountOfBeer) {this.amountOfBeer = Math.max(0, amountOfBeer);}
+
+    public void receiveBeerFromBrewery(int amount) {
+        this.amountOfBeer += amount;
+    }
 
     @Override
     public String toString() {

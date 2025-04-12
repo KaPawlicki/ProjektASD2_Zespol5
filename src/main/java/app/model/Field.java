@@ -16,7 +16,14 @@ public class Field extends Node{
     public int getBarleyAmount() {return barleyAmount;}
     public void setBarleyAmount(int barleyAmount) {this.barleyAmount = barleyAmount;}
     public int getCurrentAmountOfBarleyInTheField() {return currentAmountOfBarleyInTheField;}
-    public void setCurrentAmountOfBarleyInTheField(int currentAmountOfBarleyInTheField) {this.currentAmountOfBarleyInTheField = currentAmountOfBarleyInTheField;}
+    public void setCurrentAmountOfBarleyInTheField(int currentAmountOfBarleyInTheField) {this.currentAmountOfBarleyInTheField = Math.max(0,currentAmountOfBarleyInTheField);} // Max jest po to aby nie można było ustawić wartości ujemnej
+
+    // zbiór jęczmienia z pola
+    public int harvest(int amount) {
+        int harvested = Math.min(amount, currentAmountOfBarleyInTheField);
+        currentAmountOfBarleyInTheField -= harvested;
+        return harvested;
+    }
 
     @Override
     public String toString() {
