@@ -19,13 +19,10 @@ public class Inn extends Node{
 
     @Override
     public String toString() {
-        String s = "id: " + getId() + ", type: " + getType() + ", position: " + getPosition() + ", amountOfBeer: " + amountOfBeer;
-        if(listOfEdges.size()>0){
-            s += "\n\tlistOfEdges: ";
-            for(Edge e:listOfEdges){
-                s += ", " + e;
-            }
-        }
-        return s;
+        return "Inn{" +
+                "amountOfBeer=" + amountOfBeer +
+                ", outgoingEdges=" + outgoingEdges +
+                ", incomingEdges=" + incomingEdges +
+                '}';
     }
 }

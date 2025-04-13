@@ -27,13 +27,11 @@ public class Field extends Node{
 
     @Override
     public String toString() {
-        String s = "id: " + getId() + ", type: " + getType() + ", position: " + getPosition() + ", barleyAmount: " + barleyAmount + ", currentAmountOfBarley: " + currentAmountOfBarleyInTheField;
-        if(listOfEdges.size()>0){
-            s += "\n\tlistOfEdges: ";
-            for(Edge e:listOfEdges){
-                s += ", " + e;
-            }
-        }
-        return s;
+        return "Field{" +
+                "barleyAmount=" + barleyAmount +
+                ", currentAmountOfBarleyInTheField=" + currentAmountOfBarleyInTheField +
+                ", outgoingEdges=" + outgoingEdges +
+                ", incomingEdges=" + incomingEdges +
+                '}';
     }
 }
