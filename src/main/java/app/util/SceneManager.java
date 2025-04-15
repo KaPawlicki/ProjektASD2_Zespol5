@@ -1,4 +1,5 @@
 package app.util;
+import app.model.ShireMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import java.util.Objects;
 public class SceneManager {
 
     private static Stage primaryStage;
+    private static final ShireMap shireMap = new ShireMap(); // glowna wspoldzielona instancja mapy
 
     public static void setStage(Stage stage) {
         primaryStage = stage;
@@ -30,7 +32,19 @@ public class SceneManager {
 
     public static void switchScene(String fxmlPath, String cssPath) {;
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(SceneManager.class.getResource(fxmlPath)));
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(
+                    SceneManager.class.getResource(fxmlPath)));
+
+            //przekazywanie instancji mapy do konstruktora kontrolera
+            loader.setControllerFactory(type -> {
+                try {
+                    return type.getConstructor(ShireMap.class).newInstance(shireMap);
+                } catch (Exception e) {
+                    throw new RuntimeException("Nie można utworzyć kontrolera: " + type, e);
+                }
+            });
+
+            Parent root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Objects.requireNonNull(
                     SceneManager.class.getResource(cssPath)).toExternalForm());
