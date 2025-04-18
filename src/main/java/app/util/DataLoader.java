@@ -1,4 +1,6 @@
-package app.model;
+package app.util;
+
+import app.model.*;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -6,10 +8,15 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class DataLoader {
-    public static ShireMap loadFromFile(String filename) {
-        ShireMap shireMap = new ShireMap();
+    private ShireMap shireMap;
+
+    public DataLoader(ShireMap shireMap) {
+        this.shireMap = shireMap;
+    }
+
+    public void loadFromFile(String fileName) {
         try{
-            BufferedReader br = new BufferedReader(new FileReader(filename));
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line = br.readLine();
             // wczytaj wszystkie wierzcholki (Fields, Breweries, Inns)
             int numberOfNodes = Integer.parseInt(line); // liczba wszystkich obiektów
@@ -58,6 +65,5 @@ public class DataLoader {
         catch(IOException e){
             System.out.println("Error file loading" + e.getMessage());
         }
-        return shireMap;
     }
 }

@@ -3,7 +3,10 @@ import app.model.ShireMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -14,6 +17,11 @@ public class SceneManager {
 
     public static void setStage(Stage stage) {
         primaryStage = stage;
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
+    }
+
+    public static Stage getStage() {
+        return primaryStage;
     }
 
     public static void setTitle(String title) {
@@ -27,6 +35,13 @@ public class SceneManager {
             primaryStage.setWidth(width);
             primaryStage.setHeight(height);
             primaryStage.setResizable(false);
+        }
+    }
+
+    public static void setIcon(String icon) {
+        if (primaryStage != null) {
+            primaryStage.getIcons().add(new Image(Objects.requireNonNull(
+                    SceneManager.class.getResourceAsStream(icon))));
         }
     }
 
