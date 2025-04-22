@@ -5,13 +5,7 @@
     -fx-background-position: center center;
 }
 
-.optionButtonsContainer {
-    -fx-alignment: bottom-center;
-    -fx-spacing: 25;
-    -fx-padding: 60;
-}
-
-.optionButtonsContainer Button {
+Button {
     -fx-background-color: rgba(76, 55, 44, 0.78);
     -fx-text-fill: rgba(255, 255, 255, 0.91);
     -fx-font-size: 20px;
@@ -19,12 +13,21 @@
     -fx-wrap-text: true;
     -fx-text-alignment: center;
     -fx-background-radius: 6;
-    -fx-pref-width: 250;
-    -fx-pref-height: 80;
 }
 
-.optionButtonsContainer Button:hover{
+Button:hover {
     -fx-effect: dropshadow(gaussian, rgba(73, 53, 43, 0.84), 11, 0.55, 0, 0);
+}
+
+.optionButtonsContainer {
+    -fx-alignment: bottom-center;
+    -fx-spacing: 25;
+    -fx-padding: 60;
+}
+
+.optionButtonsContainer Button {
+    -fx-pref-width: 250;
+    -fx-pref-height: 80;
 }
 
 .startPane {
@@ -33,22 +36,6 @@
 }
 
 .startPane Button {
-    -fx-background-color: rgba(76, 55, 44, 0.78);
-    -fx-text-fill: rgba(255, 255, 255, 0.91);
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-wrap-text: true;
-    -fx-text-alignment: center;
-    -fx-background-radius: 6;
     -fx-pref-width: 120;
     -fx-pref-height: 80;
-}
-
-.startPane Button:hover {
-    -fx-effect: dropshadow(gaussian, rgba(73, 53, 43, 0.84), 11, 0.55, 0, 0);
-}
-
-.titleBar {
-    -fx-pref-width: 1200;
-    -fx-pref-height: 30;
 }

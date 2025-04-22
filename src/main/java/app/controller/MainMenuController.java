@@ -1,26 +1,18 @@
 package app.controller;
 
-import app.model.Field;
 import app.model.ShireMap;
 import app.util.DataLoader;
 import app.util.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
 import java.io.File;
 
-import java.awt.*;
 
 public class MainMenuController {
 
     private ShireMap shireMap;
 
-    @FXML
-    private HBox titleBar;
     @FXML
     private Button startButton;
     @FXML
@@ -30,9 +22,6 @@ public class MainMenuController {
     @FXML
     private Button fromPastScenarioButton;
 
-    private double xOffset = 0;
-    private double yOffset = 0;
-
 
     public MainMenuController(ShireMap shireMap) {
         this.shireMap = shireMap;
@@ -41,17 +30,6 @@ public class MainMenuController {
     @FXML
     public void initialize() {
         startButton.setDisable(true);
-
-//        titleBar.setOnMousePressed((MouseEvent event) -> {
-//            xOffset = event.getSceneX();
-//            yOffset = event.getSceneY();
-//        });
-//
-//        titleBar.setOnMouseDragged((MouseEvent event) -> {
-//            Stage stage = (Stage) titleBar.getScene().getWindow();
-//            stage.setX(event.getScreenX() - xOffset);
-//            stage.setY(event.getScreenY() - yOffset);
-//        });
 
         fromFileButton.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
@@ -67,6 +45,7 @@ public class MainMenuController {
         });
 
         uploadManuallyButton.setOnAction(event -> {
+            SceneManager.switchScene("/fxml/input-menu.fxml", "/styles/input-menu.css");
             startButton.setDisable(false);
         });
 

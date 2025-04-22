@@ -1,0 +1,86 @@
+.root {
+    -fx-background-image: url("../images/main-menu-background.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-alignment: center;
+    -fx-padding: 60 80;
+}
+
+.nameBar {
+    -fx-background-color: rgba(76, 55, 44, 0.78);
+}
+
+.namePane {
+    -fx-pref-width: 513;
+    -fx-pref-height: 60;
+    -fx-text-alignment: center;
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-border-width: 2;
+    -fx-border-color: rgba(35, 31, 27, 0.97);
+}
+
+.namePane Label {
+    -fx-text-fill: rgba(255, 255, 255, 0.89);
+}
+
+.mainContainer {
+    -fx-background-color: rgba(99, 85, 85, 0.56);
+}
+
+.stackPane {
+    -fx-pref-width: 513;
+    -fx-pref-height: 585;
+    -fx-border-width: 0 2 2 2;
+    -fx-border-color: rgba(35, 31, 27, 0.97);
+    -fx-background-color: transparent;
+}
+
+.scrollPane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.list {
+    -fx-font-size: 40;
+    -fx-background-color: transparent;
+}
+
+.list Label {
+    -fx-text-fill: white;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 8px;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal {
+    -fx-pref-height: 8px;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.addButton {
+    -fx-pref-height: 60;
+    -fx-pref-width: 60;
+    -fx-background-radius: 30;
+    -fx-background-color: rgba(101, 75, 62, 0.93);
+    -fx-text-alignment: center;
+    -fx-font-size: 28;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(255, 255, 255, 0.59);
+}
+
