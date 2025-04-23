@@ -9,9 +9,17 @@ import java.util.Arrays;
 
 public class ShireMap {
     private final Map<Integer, Node> nodes = new HashMap<>(); // lista wszystkich obiektów (pola, browary, karczmy)
+    private int numberOfNodes;
+    private int numberOfEdges;
 
-    public void addNode(Node n){
+    public ShireMap() {
+        numberOfNodes = 0;
+        numberOfEdges = 0;
+    }
+
+    public void addNode(Node n) {
         nodes.put(n.getId(), n);
+        numberOfNodes = nodes.size();
     }
 
     public void addEdge(Edge e) {
@@ -20,6 +28,7 @@ public class ShireMap {
 
         if (fromNode != null) {
             fromNode.addOutgoingEdge(e);
+            numberOfEdges++;
         }
 
         if (toNode != null) {
@@ -27,10 +36,11 @@ public class ShireMap {
         }
     }
 
+    public int getNumberOfEdges() { return numberOfEdges; }
+    public int getNumberOfNodes() { return numberOfNodes; }
     public Node getNode(int id) {
         return nodes.get(id);
     }
-
     public Map<Integer, Node> getNodes() {
         return nodes;
     }
