@@ -51,6 +51,10 @@ public class ShireMap {
         }
     }
 
+    public boolean isNotEmpty(){
+        return numberOfNodes != 0 && numberOfEdges != 0;
+    }
+
 
     private int[][] createCapacityMatrix() { //metoda tworzaca macierz pojemnosci dla sieci przeplywowej
         int n = nodes.size();

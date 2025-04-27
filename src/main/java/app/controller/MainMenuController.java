@@ -27,10 +27,16 @@ public class MainMenuController {
         this.shireMap = shireMap;
     }
 
+    public void changeStartButton() {
+        startButton.setDisable(!shireMap.isNotEmpty());
+    }
+
     @FXML
     public void initialize() {
-        startButton.setDisable(true);
+        //sprawdzenie czy mozna uruchomic symulacje
+        changeStartButton();
 
+        //obsluga przycisku do wczytywania z pliku
         fromFileButton.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Wybierz plik");
@@ -40,23 +46,23 @@ public class MainMenuController {
                 DataLoader dataLoader = new DataLoader(shireMap);
                 dataLoader.loadFromFile(file.getAbsolutePath());
             }
-
-            startButton.setDisable(false);
+            changeStartButton();
         });
 
+
+        //obluga przycisku do wpisywania recznego
         uploadManuallyButton.setOnAction(event -> {
             SceneManager.switchScene("/fxml/input-menu.fxml", "/styles/input-menu.css");
-            startButton.setDisable(false);
         });
 
+        //obsluga przycisku do wczytywania poprzednich symulacji
         fromPastScenarioButton.setOnAction(event -> {
-            startButton.setDisable(false);
+
         });
 
+        //obsluga przycisku start
         startButton.setOnAction(event -> {
-
             shireMap.simulateWholeProcess();
-
         });
     }
 }
