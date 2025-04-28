@@ -6,11 +6,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="app.controller.InputMenuController"
@@ -27,7 +22,7 @@
         </AnchorPane>
         <AnchorPane styleClass="mainContainer">
             <StackPane styleClass="stackPane" AnchorPane.leftAnchor="0">
-                <ScrollPane styleClass="scrollPane" hbarPolicy="NEVER" vbarPolicy="ALWAYS" fitToWidth="true">
+                <ScrollPane styleClass="scrollPane" hbarPolicy="NEVER" vbarPolicy="ALWAYS" fitToWidth="true" fx:id="nodeListScrollBar">
                     <VBox styleClass="list" fx:id="nodeList"/>
                 </ScrollPane>
                 <Button styleClass="addButton"
@@ -41,13 +36,12 @@
             </StackPane>
 
             <StackPane styleClass="stackPane" AnchorPane.rightAnchor="0">
-                <ScrollPane styleClass="scrollPane" hbarPolicy="NEVER" vbarPolicy="ALWAYS" fitToWidth="true">
-                    <VBox styleClass="list">
-
-                    </VBox>
+                <ScrollPane styleClass="scrollPane" hbarPolicy="NEVER" vbarPolicy="ALWAYS" fitToWidth="true" fx:id="edgeListScrollBar">
+                    <VBox styleClass="list" fx:id="edgeList" />
                 </ScrollPane>
                 <Button styleClass="addButton"
                         text="+"
+                        fx:id="addEdgeButton"
                         StackPane.alignment="BOTTOM_RIGHT">
                     <StackPane.margin>
                         <Insets bottom="20" right="20"/>

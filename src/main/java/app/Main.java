@@ -16,14 +16,11 @@ public class Main extends Application {
         SceneManager.setStage(stage);
         SceneManager.setTitle("BeerLand");
         SceneManager.setSize(1200, 800);
+        SceneManager.setIcon("/images/icon.png");
         SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
-        //SceneManager.switchScene("/fxml/input-menu.fxml", "/styles/input-menu.css");
     }
 
     public static void main(String[] args) {
-
-        //DOPOKI CHCECIE TESTOWAC SWOJE KLASY KONSOLOWO NIECH TO BEDZIE ZAKOMENTOWANE
         launch();
-
     }
 }
