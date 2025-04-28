@@ -1,21 +1,25 @@
 package app;
 
 import app.model.*;
+import app.model.*;
+import app.util.DataLoader;
+import app.util.DataWriter;
 import app.util.SceneManager;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.awt.*;
+
 
 import java.awt.*;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         SceneManager.setStage(stage);
-        SceneManager.setTitle("BearLand");
-        SceneManager.setIcon("/images/icon.png");
+        SceneManager.setTitle("BeerLand");
         SceneManager.setSize(1200, 800);
+        SceneManager.setIcon("/images/icon.png");
         SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
     }
 
@@ -47,4 +51,3 @@ public class Main extends Application {
         shireMap.simulateWholeProcessWithActivation();
     }
 }
-

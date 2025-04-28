@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<AnchorPane styleClass="listItem"
+            fx:id="root"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+    <HBox styleClass="inputBox" AnchorPane.leftAnchor="0" fillHeight="false">
+        <Label styleClass="indexNumber" fx:id="index">1</Label>
+        <VBox>
+            <Label>Typ wierzcholka</Label>
+            <ComboBox fx:id="nodeType">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Pole" />
+                        <String fx:value="Browar" />
+                        <String fx:value="Karczma" />
+                        <String fx:value="Skrzyżowanie" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+        </VBox>
+        <VBox>
+            <Label>x</Label>
+            <TextField prefColumnCount="3" fx:id="x"/>
+        </VBox>
+        <VBox>
+            <Label>y</Label>
+            <TextField prefColumnCount="3" fx:id="y"/>
+        </VBox>
+        <VBox fx:id="barleyInputBox" styleClass="barleyInputBox">
+            <Label>Ilość jęczmienia</Label>
+            <TextField prefColumnCount="6" fx:id="barleyAmount"/>
+        </VBox>
+    </HBox>
+    <HBox styleClass="iconBox" AnchorPane.rightAnchor="0">
+        <Button styleClass="deleteButton" fx:id="deleteButton"/>
+    </HBox>
+</AnchorPane>
