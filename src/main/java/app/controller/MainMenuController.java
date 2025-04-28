@@ -63,6 +63,9 @@ public class MainMenuController {
         //obsluga przycisku start
         startButton.setOnAction(event -> {
             shireMap.simulateWholeProcess();
+            System.out.println("========");
+            shireMap.simulateWholeProcessWithActivation();
+
         });
     }
 }

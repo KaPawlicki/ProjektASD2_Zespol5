@@ -19,6 +19,7 @@ public class ShireMap {
 
     public void addNode(Node n){
         nodes.put(n.getId(), n);
+        numberOfNodes = nodes.size();
     }
 
     public void addEdge(Edge e) {
@@ -53,6 +54,15 @@ public class ShireMap {
 
     public boolean isNotEmpty(){
         return numberOfNodes != 0 && numberOfEdges != 0;
+    }
+    private int findMaxId() {
+        int maxId = 0;
+        for (Integer id : nodes.keySet()) {
+            if (id > maxId) {
+                maxId = id;
+            }
+        }
+        return maxId;
     }
 
     // metoda tworzaca kopie danych pól, browarów i karczm
@@ -93,8 +103,8 @@ public class ShireMap {
     }
 
     private int[][] createCapacityMatrix() { //metoda tworzaca macierz pojemnosci dla sieci przeplywowej
-        int n = nodes.size();
-        int[][] capacity = new int[n][n];
+        int n = findMaxId();
+        int[][] capacity = new int[n+ 1][n+ 1];
 
         for (int i = 0; i < n; i++) {
             Arrays.fill(capacity[i], 0);
@@ -110,8 +120,8 @@ public class ShireMap {
     }
 
     public int[][] createActivationCostMatrix() {
-        int n = nodes.size();
-        int[][] activationCost = new int[n][n];
+        int n = findMaxId();
+        int[][] activationCost = new int[n+1][n+1];
         int INF = Integer.MAX_VALUE;
 
 
@@ -130,7 +140,9 @@ public class ShireMap {
     }
 
     public int calculateFieldToBreweryFlow() {
-        int n = nodes.size();
+        int maxId = findMaxId();
+        int n = maxId + 1;
+
         int superSource = n;
         int superSink = n + 1;
 
@@ -169,7 +181,9 @@ public class ShireMap {
     }
 
     public int calculateBreweryToInnFlow() {
-        int n = nodes.size();
+        int maxId = findMaxId();
+        int n = maxId + 1;
+
         int superSource = n;
         int superSink = n + 1;
 
