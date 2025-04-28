@@ -17,7 +17,6 @@ public class SceneManager {
 
     public static void setStage(Stage stage) {
         primaryStage = stage;
-        //primaryStage.initStyle(StageStyle.UNDECORATED);
     }
 
     public static Stage getStage() {

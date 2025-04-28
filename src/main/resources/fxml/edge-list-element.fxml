@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<AnchorPane styleClass="listItem, edgeListItem"
+            fx:id="root"
+            fx:controller="app.controller.EdgeListElementController"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+    <HBox styleClass="inputBox" AnchorPane.leftAnchor="0" fillHeight="false">
+        <VBox>
+            <Label>Skąd</Label>
+            <TextField prefColumnCount="3" fx:id="from"/>
+        </VBox>
+        <VBox>
+            <Label>Dokąd</Label>
+            <TextField prefColumnCount="3" fx:id="to"/>
+        </VBox>
+        <VBox>
+            <Label>Przepustowość</Label>
+            <TextField prefColumnCount="3" fx:id="capacity"/>
+        </VBox>
+        <VBox>
+            <Label>Koszt naprawy</Label>
+            <TextField prefColumnCount="3" fx:id="repairCost"/>
+        </VBox>
+    </HBox>
+    <HBox styleClass="iconBox" AnchorPane.rightAnchor="0">
+        <Button styleClass="deleteButton" fx:id="deleteButton"/>
+    </HBox>
+</AnchorPane>

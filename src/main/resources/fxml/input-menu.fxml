@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="app.controller.InputMenuController"
+            fx:id="root"
+            styleClass="root">
+    <VBox AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0">
+        <AnchorPane styleClass="nameBar">
+            <StackPane AnchorPane.leftAnchor="0" styleClass="namePane">
+                <Label>WIERZCHOŁKI</Label>
+            </StackPane>
+            <StackPane AnchorPane.rightAnchor="0" styleClass="namePane">
+                <Label>KRAWĘDZIE</Label>
+            </StackPane>
+        </AnchorPane>
+        <AnchorPane styleClass="mainContainer">
+            <StackPane styleClass="stackPane" AnchorPane.leftAnchor="0">
+                <ScrollPane styleClass="scrollPane" hbarPolicy="NEVER" vbarPolicy="ALWAYS" fitToWidth="true" fx:id="nodeListScrollBar">
+                    <VBox styleClass="list" fx:id="nodeList"/>
+                </ScrollPane>
+                <Button styleClass="addButton"
+                        text="+"
+                        fx:id="addNodeButton"
+                        StackPane.alignment="BOTTOM_RIGHT">
+                    <StackPane.margin>
+                        <Insets bottom="20" right="20"/>
+                    </StackPane.margin>
+                </Button>
+            </StackPane>
+
+            <StackPane styleClass="stackPane" AnchorPane.rightAnchor="0">
+                <ScrollPane styleClass="scrollPane" hbarPolicy="NEVER" vbarPolicy="ALWAYS" fitToWidth="true" fx:id="edgeListScrollBar">
+                    <VBox styleClass="list" fx:id="edgeList" />
+                </ScrollPane>
+                <Button styleClass="addButton"
+                        text="+"
+                        fx:id="addEdgeButton"
+                        StackPane.alignment="BOTTOM_RIGHT">
+                    <StackPane.margin>
+                        <Insets bottom="20" right="20"/>
+                    </StackPane.margin>
+                </Button>
+            </StackPane>
+        </AnchorPane>
+    </VBox>
+</AnchorPane>

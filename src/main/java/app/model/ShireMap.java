@@ -1,16 +1,23 @@
 package app.model;
 
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 public class ShireMap {
     private final Map<Integer, Node> nodes = new HashMap<>(); // lista wszystkich obiektów (pola, browary, karczmy)
+    private int numberOfNodes;
+    private int numberOfEdges;
 
-    public void addNode(Node n) {
+    public ShireMap() {
+        numberOfNodes = 0;
+        numberOfEdges = 0;
+    }
+
+    public void addNode(Node n){
         nodes.put(n.getId(), n);
     }
 
@@ -20,6 +27,7 @@ public class ShireMap {
 
         if (fromNode != null) {
             fromNode.addOutgoingEdge(e);
+            numberOfEdges++;
         }
 
         if (toNode != null) {
@@ -27,6 +35,8 @@ public class ShireMap {
         }
     }
 
+    public int getNumberOfEdges() { return numberOfEdges; }
+    public int getNumberOfNodes() { return numberOfNodes; }
     public Node getNode(int id) {
         return nodes.get(id);
     }
@@ -39,6 +49,10 @@ public class ShireMap {
         for (Node n : nodes.values()) {
             System.out.println(n);
         }
+    }
+
+    public boolean isNotEmpty(){
+        return numberOfNodes != 0 && numberOfEdges != 0;
     }
 
     // metoda tworzaca kopie danych pól, browarów i karczm
