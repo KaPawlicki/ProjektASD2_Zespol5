@@ -21,6 +21,14 @@ public abstract class Node {
         nextID++;
     }
 
+    public Node(int id, String type, Point position) {
+        this.id = id;
+        this.type = type;
+        this.position = position;
+        outgoingEdges = new ArrayList<>();
+        incomingEdges = new ArrayList<>();
+    }
+
     public int getId() {return id;}
     public String getType() {return type;}
     public Point getPosition() {return position;}

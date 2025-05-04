@@ -25,10 +25,10 @@ public class DataWriter {
                 writer.write(type + " ");
                 writer.write(((int)(n.getPosition().getX())) + " " + (int)(n.getPosition().getY()) + " ");
                 switch (type) {
-                    case "Field":
+                    case "Pole":
                         writer.write(((Field)n).getBarleyAmount() + "");
                         break;
-                    case "Brewery", "Intersection", "Inn":
+                    case "Browar", "Skrzyżowanie", "Karczma":
                         break;
                     default:
                         throw new RuntimeException();

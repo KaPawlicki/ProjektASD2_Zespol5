@@ -33,11 +33,12 @@ public class MainMenuController {
 
     @FXML
     public void initialize() {
-        //sprawdzenie czy mozna uruchomic symulacje
         changeStartButton();
+        shireMap.print();
 
         //obsluga przycisku do wczytywania z pliku
         fromFileButton.setOnAction(event -> {
+            shireMap.clear();
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Wybierz plik");
             File file = fileChooser.showOpenDialog(SceneManager.getStage());
@@ -53,6 +54,7 @@ public class MainMenuController {
         //obluga przycisku do wpisywania recznego
         uploadManuallyButton.setOnAction(event -> {
             SceneManager.switchScene("/fxml/input-menu.fxml", "/styles/input-menu.css");
+            changeStartButton();
         });
 
         //obsluga przycisku do wczytywania poprzednich symulacji
@@ -65,7 +67,6 @@ public class MainMenuController {
             shireMap.simulateWholeProcess();
             System.out.println("========");
             shireMap.simulateWholeProcessWithActivation();
-
         });
     }
 }

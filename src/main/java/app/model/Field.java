@@ -13,6 +13,12 @@ public class Field extends Node{
         this.currentAmountOfBarleyInTheField = barleyAmount;
     }
 
+    public Field(int id, String type, Point position, int barleyAmount) {
+        super(id, type, position);
+        this.barleyAmount = barleyAmount;
+        this.currentAmountOfBarleyInTheField = barleyAmount;
+    }
+
     public int getBarleyAmount() {return barleyAmount;}
     public void setBarleyAmount(int barleyAmount) {this.barleyAmount = barleyAmount;}
     public int getCurrentAmountOfBarleyInTheField() {return currentAmountOfBarleyInTheField;}

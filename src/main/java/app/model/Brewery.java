@@ -12,6 +12,11 @@ public class Brewery extends Node{
         this.currentAmountOfBeerProduced = 0;
     }
 
+    public Brewery(int id, String type, Point position) {
+        super(id, type, position);
+        this.currentAmountOfBeerProduced = 0;
+    }
+
     //public static int getAmountOfBarleyProcessed() {return amountOfBarleyProcessed;}
     //public static void setAmountOfBarleyProcessed(int amount) {amountOfBarleyProcessed = amount;}
     public int getCurrentAmountOfBeerProduced() {return currentAmountOfBeerProduced;}

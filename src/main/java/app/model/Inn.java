@@ -10,6 +10,11 @@ public class Inn extends Node{
         this.amountOfBeer = 0;
     }
 
+    public Inn(int id, String type, Point position) {
+        super(id, type, position);
+        this.amountOfBeer = 0;
+    }
+
     public int getAmountOfBeer() {return amountOfBeer;}
     public void setAmountOfBeer(int amountOfBeer) {this.amountOfBeer = Math.max(0, amountOfBeer);}
 

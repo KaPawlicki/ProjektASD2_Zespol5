@@ -157,10 +157,6 @@
     -fx-background-image: url("../images/hover-over-trashcan.png");
 }
 
-.barleyInputBox {
-    -fx-opacity: 0;
-}
-
 .edgeListItem {
     -fx-padding: 0 0 0 20;
 }

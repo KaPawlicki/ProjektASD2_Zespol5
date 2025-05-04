@@ -9,8 +9,8 @@ import java.util.Arrays;
 
 public class ShireMap {
     private final Map<Integer, Node> nodes = new HashMap<>(); // lista wszystkich obiektów (pola, browary, karczmy)
-    private int numberOfNodes;
-    private int numberOfEdges;
+    private int numberOfNodes = 0;
+    private int numberOfEdges = 0;
 
     public ShireMap() {
         numberOfNodes = 0;
@@ -53,9 +53,14 @@ public class ShireMap {
     }
 
     public boolean isNotEmpty(){
-        return numberOfNodes != 0 && numberOfEdges != 0;
+        return numberOfNodes != 0; // dla testow wystarczy przynajmniej sam wierzcholek potem do sprawdzenia
     }
-    private int findMaxId() {
+
+    public void clear(){
+        nodes.clear();
+    }
+
+    public int findMaxId() {
         int maxId = 0;
         for (Integer id : nodes.keySet()) {
             if (id > maxId) {

@@ -7,6 +7,10 @@ public class Intersection extends Node {
         super(type, position);
     }
 
+    public Intersection(int id, String type, Point position) {
+        super(id, type, position);
+    }
+
     @Override
     public String toString() {
         return "Intersection{" +
