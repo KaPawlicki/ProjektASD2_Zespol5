@@ -1,4 +1,6 @@
-package app.model;
+package app.model.simulation;
+
+import app.model.structure.*;
 
 import java.util.HashMap;
 import java.util.Map;

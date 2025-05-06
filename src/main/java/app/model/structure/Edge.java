@@ -1,4 +1,4 @@
-package app.model;
+package app.model.structure;
 
 public class Edge {
     private static int nextId = 0;

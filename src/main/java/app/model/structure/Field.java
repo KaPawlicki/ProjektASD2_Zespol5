@@ -1,9 +1,8 @@
-package app.model;
+package app.model.structure;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class Field extends Node{
+public class Field extends Node {
     private int barleyAmount; // ilość wyrastanego jęczmienia
     private int currentAmountOfBarleyInTheField; // dostepna ilosc jeczmienia do zebrania
 

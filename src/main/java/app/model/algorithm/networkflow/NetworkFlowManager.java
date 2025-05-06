@@ -1,4 +1,6 @@
-package app.model;
+package app.model.algorithm.networkflow;
+
+import app.model.structure.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,9 +1,9 @@
 package app.util;
 
-import app.model.Edge;
-import app.model.Field;
-import app.model.Node;
-import app.model.ShireMap;
+import app.model.structure.Edge;
+import app.model.structure.Field;
+import app.model.structure.Node;
+import app.model.structure.ShireMap;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

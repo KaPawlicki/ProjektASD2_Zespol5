@@ -1,4 +1,8 @@
-package app.model;
+package app.model.structure;
+
+import app.model.algorithm.networkflow.NetworkFlowManager;
+import app.model.simulation.SimulationEngine;
+import app.model.simulation.StateManager;
 
 import java.util.HashMap;
 import java.util.Map;

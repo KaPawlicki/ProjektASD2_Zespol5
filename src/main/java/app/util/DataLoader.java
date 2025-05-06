@@ -1,6 +1,6 @@
 package app.util;
 
-import app.model.*;
+import app.model.structure.*;
 
 import java.awt.*;
 import java.io.BufferedReader;

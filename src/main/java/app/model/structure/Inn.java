@@ -1,8 +1,8 @@
-package app.model;
+package app.model.structure;
 
 import java.awt.*;
 
-public class Inn extends Node{
+public class Inn extends Node {
     private int amountOfBeer; // dostarczona ilość piwa do karczmy
 
     public Inn(String type, Point position) {

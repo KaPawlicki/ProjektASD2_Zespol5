@@ -1,4 +1,4 @@
-package app.model;
+package app.model.algorithm.networkflow;
 
 import java.util.Arrays;
 import java.util.LinkedList;

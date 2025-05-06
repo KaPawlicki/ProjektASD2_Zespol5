@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.model.ShireMap;
+import app.model.structure.ShireMap;
 import app.util.DataLoader;
 import app.util.SceneManager;
 import javafx.fxml.FXML;

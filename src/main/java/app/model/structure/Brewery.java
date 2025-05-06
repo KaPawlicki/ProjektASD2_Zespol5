@@ -1,8 +1,8 @@
-package app.model;
+package app.model.structure;
 
 import java.awt.*;
 
-public class Brewery extends Node{
+public class Brewery extends Node {
     private static final int BEER_PER_TON_OF_BARLEY = 10; // stały przelicznik ile z tony jęczmienia można wytworzyć piwa
    // private static int amountOfBarleyProcessed = 10; // ile dany browar może przetworzyć jęczmienia w tonach
     private int currentAmountOfBeerProduced; // aktualana ilość wyprodukowanego piwa

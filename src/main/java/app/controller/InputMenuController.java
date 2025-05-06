@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.model.*;
+import app.model.structure.*;
 import app.util.SceneManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -154,7 +154,7 @@ public class InputMenuController {
 
 //brak komentarzy
     public void loadShireMapIntoGUI(){
-        for(app.model.Node n : shireMap.getNodes().values()){
+        for(app.model.structure.Node n : shireMap.getNodes().values()){
             int barleyAmount;
             if (n.getType().equals("Pole")) {
                 Field field = (Field) n;
@@ -180,7 +180,7 @@ public class InputMenuController {
             }
         }
 
-        for(app.model.Node n : shireMap.getNodes().values()){
+        for(app.model.structure.Node n : shireMap.getNodes().values()){
             for(Edge e : n.getOutgoingEdges()){
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/edge-list-element.fxml"));

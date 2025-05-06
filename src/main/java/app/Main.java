@@ -1,11 +1,14 @@
 package app;
 
-import app.model.*;
+import app.model.algorithm.geometry.ConvexHull;
+import app.model.structure.*;
 import app.util.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -19,7 +22,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        //launch();
+        launch();
         ShireMap shireMap = new ShireMap();
 
         Field field1 = new Field("Field1", new Point(0, 0), 20); // Główne źródło
@@ -43,5 +46,47 @@ public class Main extends Application {
         shireMap.simulateWholeProcess();
         System.out.println("========");
         shireMap.simulateWholeProcessWithActivation();
+
+        System.out.println("\n");
+
+        List<Point> points = new ArrayList<>();
+
+        /*
+        points.add(new Point(2, 2));
+        points.add(new Point(1, 3));
+        points.add(new Point(3, 1));
+        points.add(new Point(5, 2));
+        points.add(new Point(4, 4));
+        points.add(new Point(2, 5));
+        points.add(new Point(1, 1));
+        points.add(new Point(3, 3));
+        points.add(new Point(5, 4));
+        points.add(new Point(3, 5));
+        */
+        /*
+        points.add(new Point(0, 3));
+        points.add(new Point(1, 1));
+        points.add(new Point(2, 2));
+        points.add(new Point(4, 4));
+        points.add(new Point(0, 0));
+        points.add(new Point(1, 2));
+        points.add(new Point(3, 1));
+        points.add(new Point(3, 3));
+        */
+        points.add(new Point(0, 0));
+        points.add(new Point(1, 0));
+        points.add(new Point(2, 0));
+        points.add(new Point(2, 1));
+        points.add(new Point(4, 2));
+        points.add(new Point(3, 4));
+        points.add(new Point(1, 3));
+        points.add(new Point(5, 1));
+        points.add(new Point(3, 0));
+        points.add(new Point(2, 2));
+        ConvexHull otoczka = new ConvexHull(shireMap.getNodes());
+        List<Point> punkty = otoczka.createConvexHull();
+        for(Point p : punkty) {
+            System.out.print(p + " ");
+        }
     }
 }

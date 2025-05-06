@@ -1,4 +1,8 @@
-package app.model;
+package app.model.simulation;
+
+import app.model.algorithm.networkflow.MaxFlowWithActivation;
+import app.model.algorithm.networkflow.NetworkFlowManager;
+import app.model.structure.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
