@@ -14,6 +14,7 @@ public class Main extends Application {
         SceneManager.setSize(1200, 800);
         SceneManager.setIcon("/images/icon.png");
         SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
+        //SceneManager.switchScene("/fxml/simulation-result-screen.fxml", "/styles/simulation-result-screen.css");
     }
 
     public static void main(String[] args) {

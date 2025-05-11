@@ -56,6 +56,7 @@ public class MainMenuController {
 
         //obsluga przycisku start
         startButton.setOnAction(event -> {
+            SceneManager.switchScene("/fxml/simulation-result-screen.fxml", "/styles/simulation-result-screen.css");
             shireMap.simulateWholeProcess();
             System.out.println("========");
             shireMap.simulateWholeProcessWithActivation();
