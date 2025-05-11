@@ -7,11 +7,6 @@ public class Brewery extends Node {
    // private static int amountOfBarleyProcessed = 10; // ile dany browar może przetworzyć jęczmienia w tonach
     private int currentAmountOfBeerProduced; // aktualana ilość wyprodukowanego piwa
 
-    public Brewery(String type, Point position) {
-        super(type, position);
-        this.currentAmountOfBeerProduced = 0;
-    }
-
     public Brewery(int id, String type, Point position) {
         super(id, type, position);
         this.currentAmountOfBeerProduced = 0;

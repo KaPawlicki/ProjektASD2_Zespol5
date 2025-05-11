@@ -6,12 +6,6 @@ public class Field extends Node {
     private int barleyAmount; // ilość wyrastanego jęczmienia
     private int currentAmountOfBarleyInTheField; // dostepna ilosc jeczmienia do zebrania
 
-    public Field(String type, Point position, int barleyAmount) {
-        super(type, position);
-        this.barleyAmount = barleyAmount;
-        this.currentAmountOfBarleyInTheField = barleyAmount;
-    }
-
     public Field(int id, String type, Point position, int barleyAmount) {
         super(id, type, position);
         this.barleyAmount = barleyAmount;

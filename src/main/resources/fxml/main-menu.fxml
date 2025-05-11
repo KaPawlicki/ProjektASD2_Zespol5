@@ -6,6 +6,7 @@
 
 <?import javafx.scene.layout.Pane?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane fx:controller="app.controller.MainMenuController" styleClass="root" xmlns:fx="http://javafx.com/fxml">
     <VBox styleClass="optionButtonsContainer" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0">
       <Button text="Wczytaj dane z pliku" fx:id="fromFileButton"/>
@@ -17,5 +18,8 @@
       <Button text="Zacznij" fx:id="startButton" />
     </Pane>
 
+    <Pane styleClass="toast" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+        <Label fx:id="toastMessage"/>
+    </Pane>
 </AnchorPane>
 

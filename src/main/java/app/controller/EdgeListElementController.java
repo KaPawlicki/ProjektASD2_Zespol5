@@ -46,8 +46,8 @@ public class EdgeListElementController {
     }
 
     public EdgeListElementController() {
-        this.fromValue = 1;
-        this.toValue = 1;
+        this.fromValue = 0;
+        this.toValue = 0;
         this.capacityValue = 0;
         this.repairCostValue = 0;
     }

@@ -3,9 +3,6 @@ package app.model.structure;
 import java.awt.*;
 
 public class Intersection extends Node {
-    public Intersection(String type, Point position) {
-        super(type, position);
-    }
 
     public Intersection(int id, String type, Point position) {
         super(id, type, position);

@@ -30,19 +30,19 @@ public class DataLoader {
                 switch(type){
                     case "Pole":
                         int barleyAmount = Integer.parseInt(parts[3]);
-                        Field field = new Field(type, new Point(x,y), barleyAmount);
+                        Field field = new Field(i, type, new Point(x,y), barleyAmount);
                         shireMap.addNode(field);
                         break;
                     case "Browar":
-                        Brewery brewery = new Brewery(type, new Point(x,y));
+                        Brewery brewery = new Brewery(i, type, new Point(x,y));
                         shireMap.addNode(brewery);
                         break;
                     case "Karczma":
-                        Inn inn = new Inn(type, new Point(x,y));
+                        Inn inn = new Inn(i, type, new Point(x,y));
                         shireMap.addNode(inn);
                         break;
                     case "Skrzyżowanie":
-                        Intersection intersection = new Intersection(type, new Point(x,y));
+                        Intersection intersection = new Intersection(i, type, new Point(x,y));
                         shireMap.addNode(intersection);
                         break;
                 }

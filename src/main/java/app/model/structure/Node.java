@@ -5,21 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Node {
-    private static int nextID = 0;
     private final int id;
     private String type;
     private Point position; // pozycja jest reprezentowana jako punkt na płaszczyźnie w postaci P = (x, y)
     protected List<Edge> outgoingEdges; // lista krawędzi wychodzących z wierzchołka
     protected List<Edge> incomingEdges; // lista krawędzi wchodzących do wierzchołka
-
-    public Node(String type, Point position) {
-        this.id = nextID;
-        this.type = type;
-        this.position = position;
-        outgoingEdges = new ArrayList<>();
-        incomingEdges = new ArrayList<>();
-        nextID++;
-    }
 
     public Node(int id, String type, Point position) {
         this.id = id;

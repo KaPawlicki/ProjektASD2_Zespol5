@@ -69,8 +69,8 @@ public class ShireMap {
         }
     }
 
-    public boolean isNotEmpty(){
-        return numberOfNodes != 0; // dla testow wystarczy przynajmniej sam wierzcholek potem do sprawdzenia
+    public boolean isEmpty(){
+        return numberOfNodes == 0;
     }
 
     public void clear(){

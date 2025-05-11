@@ -5,11 +5,6 @@ import java.awt.*;
 public class Inn extends Node {
     private int amountOfBeer; // dostarczona ilość piwa do karczmy
 
-    public Inn(String type, Point position) {
-        super(type, position);
-        this.amountOfBeer = 0;
-    }
-
     public Inn(int id, String type, Point position) {
         super(id, type, position);
         this.amountOfBeer = 0;
