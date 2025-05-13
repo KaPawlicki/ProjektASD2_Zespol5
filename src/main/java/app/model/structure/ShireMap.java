@@ -37,13 +37,10 @@ public class ShireMap {
         Node fromNode = nodes.get(e.getFrom());
         Node toNode = nodes.get(e.getTo());
 
-        if (fromNode != null) {
+        if (fromNode != null && toNode != null) {
             fromNode.addOutgoingEdge(e);
-            numberOfEdges++;
-        }
-
-        if (toNode != null) {
             toNode.addIncomingEdge(e);
+            numberOfEdges++;
         }
     }
 

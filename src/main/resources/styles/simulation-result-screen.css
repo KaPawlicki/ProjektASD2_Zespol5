@@ -8,6 +8,7 @@
 .textField {
     -fx-pref-height: 200;
     -fx-pref-width: 800;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.51), 6, 0.65, 0, 2);
 }
 
 .textField Label{
@@ -16,7 +17,6 @@
     -fx-font-size: 20;
     -fx-padding: 10 30 10 30;
     -fx-text-fill: #3e3e3e;
-
 }
 
 

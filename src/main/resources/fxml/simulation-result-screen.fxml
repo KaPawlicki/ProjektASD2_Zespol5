@@ -9,25 +9,28 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
-<AnchorPane fx:controller="app.controller.SimulationResultScreenController" styleClass="root" xmlns:fx="http://javafx.com/fxml">
-<!--    <ImageView AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0">-->
-<!--        <Image url="@../images/messenger.png"/>-->
-<!--    </ImageView>-->
+<AnchorPane fx:controller="app.controller.SimulationResultScreenController" fx:id="root" styleClass="root" xmlns:fx="http://javafx.com/fxml">
 
-<!--    <ImageView AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="10">-->
-<!--        <Image url="@../images/scroll.png"/>-->
-<!--    </ImageView>-->
-
-
-    <ImageView AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
-        <Image url="@../images/temp.png"/>
+    <ImageView fx:id="samwiseImage" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0">
+        <Image url="@../images/samwise.png"/>
     </ImageView>
-
-    <StackPane styleClass="textField" AnchorPane.leftAnchor="20" AnchorPane.bottomAnchor="20">
+    <StackPane fx:id="samwiseTextField" styleClass="textField" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
         <ImageView>
             <Image url="@../images/scroll.png"/>
         </ImageView>
-        <Label>
+        <Label fx:id="samwiseText"/>
+    </StackPane>
+
+
+
+    <ImageView fx:id="advisorImage" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+        <Image url="@../images/advisor.png"/>
+    </ImageView>
+    <StackPane fx:id="advisorTextField" styleClass="textField" AnchorPane.leftAnchor="20" AnchorPane.bottomAnchor="20">
+        <ImageView>
+            <Image url="@../images/scroll.png"/>
+        </ImageView>
+        <Label fx:id="advisorText">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
             laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -35,6 +38,7 @@
             non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         </Label>
     </StackPane>
+
 
 </AnchorPane>
 
