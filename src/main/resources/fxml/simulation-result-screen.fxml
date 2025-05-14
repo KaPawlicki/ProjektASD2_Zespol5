@@ -6,7 +6,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <AnchorPane fx:controller="app.controller.SimulationResultScreenController" fx:id="root" styleClass="root" xmlns:fx="http://javafx.com/fxml">
@@ -22,7 +21,6 @@
     </StackPane>
 
 
-
     <ImageView fx:id="advisorImage" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
         <Image url="@../images/advisor.png"/>
     </ImageView>
@@ -30,15 +28,12 @@
         <ImageView>
             <Image url="@../images/scroll.png"/>
         </ImageView>
-        <Label fx:id="advisorText">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        </Label>
+        <Label fx:id="advisorText"/>
     </StackPane>
 
+    <Pane styleClass="toast" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+        <Label fx:id="toastMessage"/>
+    </Pane>
 
 </AnchorPane>
 

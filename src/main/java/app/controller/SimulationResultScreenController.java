@@ -41,6 +41,8 @@ public class SimulationResultScreenController {
     private StackPane advisorTextField;
     @FXML
     private Label advisorText;
+    @FXML
+    private Label toastMessage;
 
 
 
@@ -135,7 +137,27 @@ public class SimulationResultScreenController {
         samwiseFadeIn.setOnFinished(event -> samwiseTextFadeIn.play());
         samwiseTextFadeIn.setOnFinished(event -> typeText(speechList.getFirst().getValue(), samwiseText, Duration.millis(50)));
 
+        showToast();
         sceneFadeIn.play();
+
+    }
+
+    public void showToast(){
+        toastMessage.setText("Aby kontynuować wciśnij spacje");
+
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.0), toastMessage);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(1.5), toastMessage);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.setDelay(Duration.seconds(3));
+
+        fadeIn.setOnFinished(event -> fadeOut.play());
+
+        fadeIn.setDelay(Duration.seconds(5));
+        fadeIn.play();
     }
 
     private void typeText(String fullText, Label targetLabel, Duration speedPerChar) {
@@ -186,6 +208,9 @@ public class SimulationResultScreenController {
     public void initialize() {
         fillSpeechList();
 
+
+
+
         root.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.SPACE) {
                 if(spaceLocked) return;
@@ -210,10 +235,13 @@ public class SimulationResultScreenController {
                     }
                     showNextDialog(speechList.get(speechIndex).getKey(), speechList.get(speechIndex).getValue());
                 }
+            } else if (event.getCode() == KeyCode.ESCAPE) {
+                SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
             }
         });
         root.setFocusTraversable(true);
         Platform.runLater(() -> root.requestFocus());
+
 
         beginingAnimation();
     }

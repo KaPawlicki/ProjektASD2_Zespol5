@@ -37,6 +37,8 @@ public class InputMenuController {
     private Button addEdgeButton;
     @FXML
     private AnchorPane root;
+    @FXML
+    private Button exitButton;
 
     public InputMenuController(ShireMap shireMap) {
         this.shireMap = shireMap;
@@ -60,6 +62,11 @@ public class InputMenuController {
         });
         root.setFocusTraversable(true);
         root.requestFocus();
+
+        exitButton.setOnAction(event -> {
+            updateShireMap();
+            SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
+        });
 
 
         //obsluga przycisku dodawania wierzcholkow

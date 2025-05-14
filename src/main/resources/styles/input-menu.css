@@ -91,6 +91,10 @@
     -fx-border-radius: 30;
 }
 
+.addButton: hover {
+    -fx-background-color: rgba(105, 78, 65, 0.93);
+}
+
 .listItem {
     -fx-pref-width: 475;
     -fx-max-width: 475;
@@ -159,4 +163,21 @@
 
 .edgeListItem {
     -fx-padding: 0 0 0 20;
+}
+
+.exitButton {
+    -fx-pref-height: 25;
+    -fx-pref-width: 25;
+    -fx-background-color: rgba(74, 59, 58, 0.93);
+    -fx-text-alignment: center;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(255, 255, 255, 0.80);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 2, 2);
+    -fx-border-width: 1;
+    -fx-border-color: rgba(57, 41, 33, 0.93);
+}
+
+.exitButton: hover {
+    -fx-background-color: rgba(130, 48, 42, 0.93);
 }
