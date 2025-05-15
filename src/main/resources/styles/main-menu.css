@@ -21,8 +21,8 @@ Button:hover {
 
 .optionButtonsContainer {
     -fx-alignment: bottom-center;
-    -fx-spacing: 25;
-    -fx-padding: 60;
+    -fx-spacing: 15;
+    -fx-padding: 50;
 }
 
 .optionButtonsContainer Button {

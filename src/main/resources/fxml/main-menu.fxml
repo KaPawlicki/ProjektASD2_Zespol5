@@ -12,6 +12,7 @@
       <Button text="Wczytaj dane z pliku" fx:id="fromFileButton"/>
       <Button text="Wpisz dane ręcznie" fx:id="uploadManuallyButton"/>
       <Button text="Wybierz poprzednią symulacje" fx:id="fromPastScenarioButton"/>
+      <Button text="Przeszukaj poprzednie symulacje" fx:id="searchInResultsButton"/>
     </VBox>
 
     <Pane styleClass="startPane" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0">

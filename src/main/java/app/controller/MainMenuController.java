@@ -2,6 +2,7 @@ package app.controller;
 
 import app.model.structure.ShireMap;
 import app.util.DataLoader;
+import app.util.DataWriter;
 import app.util.SceneManager;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class MainMenuController {
@@ -26,6 +29,8 @@ public class MainMenuController {
     @FXML
     private Button fromPastScenarioButton;
     @FXML
+    private Button searchInResultsButton;
+    @FXML
     private Label toastMessage;
 
 
@@ -39,7 +44,7 @@ public class MainMenuController {
 
         //obsluga przycisku do wczytywania z pliku
         fromFileButton.setOnAction(event -> {
-            readFromFile();
+            readFromFile("");
             showToast();
         });
 
@@ -51,15 +56,14 @@ public class MainMenuController {
 
         //obsluga przycisku do wczytywania poprzednich symulacji
         fromPastScenarioButton.setOnAction(event -> {
-
+            readFromFile("src/main/savedSimulations");
+            showToast();
         });
 
         //obsluga przycisku start
         startButton.setOnAction(event -> {
+            saveToFile();
             SceneManager.switchScene("/fxml/simulation-result-screen.fxml", "/styles/simulation-result-screen.css");
-            shireMap.simulateWholeProcess();
-            System.out.println("========");
-            shireMap.simulateWholeProcessWithActivation();
         });
     }
 
@@ -67,10 +71,16 @@ public class MainMenuController {
         startButton.setDisable(shireMap.isEmpty());
     }
 
-    public void readFromFile() {
+    public void readFromFile(String initialPath) {
         shireMap.clear();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Wybierz plik");
+
+        File initialDir = new File(initialPath);
+        if (initialDir.exists() && initialDir.isDirectory()) {
+            fileChooser.setInitialDirectory(initialDir);
+        }
+
         File file = fileChooser.showOpenDialog(SceneManager.getStage());
 
         if (file != null) {
@@ -78,6 +88,17 @@ public class MainMenuController {
             dataLoader.loadFromFile(file.getAbsolutePath());
         }
         changeStartButton();
+    }
+
+    public void saveToFile() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy_HH-mm");
+        String formatted = now.format(formatter);
+
+        String filename = "src/main/savedSimulations/" + formatted + ".txt";
+
+        DataWriter dataWriter = new DataWriter(shireMap);
+        dataWriter.writeToFile(filename);
     }
 
     public void showToast(){
