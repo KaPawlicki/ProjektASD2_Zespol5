@@ -1,8 +1,11 @@
 package app;
 
+import app.model.algorithm.text.Kmp;
 import app.util.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import static app.model.algorithm.text.Kmp.KMPSearch;
 
 
 public class Main extends Application {
