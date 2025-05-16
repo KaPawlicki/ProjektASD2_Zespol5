@@ -1,9 +1,9 @@
 7
-Field 0 0 120
-Brewery 1 2
-Inn 4 2
-Field 2 4 80
-Intersection 3 1
+Pole 0 0 120
+Browar 1 2
+Karczma 4 2
+Pola 2 4 80
+Skrzyzowanie 3 1
 Inn 5 5
 Field 6 0 60
 6

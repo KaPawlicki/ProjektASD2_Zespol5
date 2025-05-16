@@ -64,6 +64,8 @@ public class MainMenuController {
         startButton.setOnAction(event -> {
             saveToFile();
             SceneManager.switchScene("/fxml/simulation-result-screen.fxml", "/styles/simulation-result-screen.css");
+            //shireMap.simulateWholeProcess();
+            //shireMap.simulateWholeProcessWithActivation();
         });
     }
 
