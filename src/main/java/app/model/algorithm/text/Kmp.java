@@ -6,6 +6,7 @@ import java.util.List;
 public class Kmp {
     public static List<Integer> KMPSearch(String pattern, String text) {
         List<Integer> positions = new ArrayList<>();
+
         int m = pattern.length();
         int n = text.length();
 

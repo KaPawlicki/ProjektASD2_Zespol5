@@ -9,6 +9,7 @@ public class RabinKarp {
 
     public static List<Integer> search(String pattern, String text) {
         List<Integer> positions = new ArrayList<>();
+
         int m = pattern.length();
         int n = text.length();
 
