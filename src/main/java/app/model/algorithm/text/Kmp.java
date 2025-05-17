@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Kmp {
-    public static void KMPSearch(String pattern, String text) {
+    public static List<Integer> KMPSearch(String pattern, String text) {
+        List<Integer> positions = new ArrayList<>();
         int m = pattern.length();
         int n = text.length();
 
@@ -20,7 +21,7 @@ public class Kmp {
                 i++;
             }
             if (j == m) {
-                System.out.println("Znaleziono wzorzec na indeksie " + (i - j));
+                positions.add(i-j);
                 j = lps[j - 1];
             }
             // niezgodność po dopasowaniu j znaków
@@ -31,6 +32,7 @@ public class Kmp {
                     i = i + 1;
             }
         }
+        return positions;
     }
 
     // funkcja do obliczania tablicy lps dla wzorca
