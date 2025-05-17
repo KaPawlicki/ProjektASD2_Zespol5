@@ -1,5 +1,6 @@
 package app;
 
+import app.model.algorithm.text.BoyerMoore;
 import app.model.algorithm.text.Kmp;
 import app.model.algorithm.text.huffman.HuffmanCoding;
 import app.util.SceneManager;
@@ -24,6 +25,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        launch();;
+        launch();
     }
 }
