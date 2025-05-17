@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="app.controller.SearchingScreenController"
+            fx:id="root"
+            styleClass="root">
+
+    <AnchorPane styleClass="mainContainer" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <VBox styleClass="algorithmChoiceContainer" AnchorPane.topAnchor="95" AnchorPane.leftAnchor="60">
+            <fx:define>
+                <ToggleGroup fx:id="algorithmChoice" />
+            </fx:define>
+
+            <Label>Wybierz algorytm: </Label>
+            <RadioButton text="Rabin-Karp" toggleGroup="$algorithmChoice" />
+            <RadioButton text="KMP" toggleGroup="$algorithmChoice" />
+            <RadioButton text="Boyer-Moore" toggleGroup="$algorithmChoice" />
+        </VBox>
+        <HBox styleClass="searchContainer" AnchorPane.topAnchor="100" AnchorPane.rightAnchor="60">
+            <TextField promptText="Wyszukaj..."/>
+            <Button/>
+        </HBox>
+        <AnchorPane styleClass="bottomContainer" AnchorPane.bottomAnchor="90" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+            <Label AnchorPane.topAnchor="10" AnchorPane.leftAnchor="90">6 z 14 wystapien</Label>
+            <Label AnchorPane.topAnchor="10" AnchorPane.rightAnchor="90">14.05.2025 13:27</Label>
+            <HBox styleClass="resultsBox" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                <Button/>
+                <TextFlow>
+                    <Text fx:id="textBeforeFoundWord" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod lectus sit amet " />
+                    <Text fx:id="foundWord" text="lobortis" styleClass="highlitedWord"/>
+                    <Text fx:id="textAfterFoundWord" text=" porttitor. Pellentesque aliquet vestibulum justo, dictum pulvinar libero accumsan ac. C" />
+                </TextFlow>
+                <Button/>
+            </HBox>
+        </AnchorPane>
+
+    </AnchorPane>
+
+    <Button styleClass="exitButton" fx:id="exitButton" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">X</Button>
+</AnchorPane>

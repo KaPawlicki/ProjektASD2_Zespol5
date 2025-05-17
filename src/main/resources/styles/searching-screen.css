@@ -1,0 +1,97 @@
+.root {
+    -fx-background-image: url("../images/main-menu-background.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-alignment: center;
+    -fx-padding: 60 80;
+}
+
+.mainContainer {
+    -fx-background-color: rgba(99, 85, 85, 0.56);
+    -fx-pref-width: 1030;
+    -fx-pref-height: 647;
+    -fx-border-width: 2;
+    -fx-border-color: rgba(35, 31, 27, 0.97);
+}
+
+.searchContainer TextField {
+    -fx-text-fill: #cdcdcd;
+    -fx-font-size: 16;
+    -fx-pref-height: 50;
+    -fx-pref-width: 180;
+    -fx-background-color: rgba(39, 36, 36, 0.75);
+}
+
+.searchContainer Button {
+    -fx-pref-height: 50;
+    -fx-pref-width: 50;
+    -fx-background-color: rgba(39, 36, 36, 0.75);
+    -fx-background-image: url("../images/search.png");
+    -fx-background-size: 30;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+/*.algorithmChoiceContainer {*/
+/*    -fx-background-color: rgba(39, 36, 36, 0.75);*/
+/*}*/
+
+.algorithmChoiceContainer Label {
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-padding: 5;
+}
+
+.algorithmChoiceContainer RadioButton {
+    -fx-text-fill: white;
+    -fx-font-size: 17;
+    -fx-padding: 2 5 5 18;
+}
+
+.bottomContainer {
+    -fx-pref-height: 160;
+    -fx-background-color: rgba(39, 36, 36, 0.75);
+}
+
+.bottomContainer Label {
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+}
+
+.resultsBox {
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-spacing: 30;
+}
+
+TextFlow {
+    -fx-pref-width: 800;
+}
+
+Text {
+    -fx-fill: white;
+    -fx-font-size: 25;
+}
+
+.highlitedWord {
+    -fx-fill: red;
+    -fx-font-size: 25;
+}
+
+.exitButton {
+    -fx-pref-height: 25;
+    -fx-pref-width: 25;
+    -fx-background-color: rgba(74, 59, 58, 0.93);
+    -fx-text-alignment: center;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(255, 255, 255, 0.80);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 2, 2);
+    -fx-border-width: 1;
+    -fx-border-color: rgba(57, 41, 33, 0.93);
+}
+
+.exitButton:hover {
+    -fx-background-color: rgba(130, 48, 42, 0.93);
+}

@@ -91,7 +91,7 @@
     -fx-border-radius: 30;
 }
 
-.addButton: hover {
+.addButton:hover {
     -fx-background-color: rgba(105, 78, 65, 0.93);
 }
 
@@ -178,6 +178,6 @@
     -fx-border-color: rgba(57, 41, 33, 0.93);
 }
 
-.exitButton: hover {
+.exitButton:hover {
     -fx-background-color: rgba(130, 48, 42, 0.93);
 }

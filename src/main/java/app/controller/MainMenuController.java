@@ -60,6 +60,10 @@ public class MainMenuController {
             showToast();
         });
 
+        searchInResultsButton.setOnAction(event -> {
+            SceneManager.switchScene("/fxml/searching-screen.fxml", "/styles/searching-screen.css");
+        });
+
         //obsluga przycisku start
         startButton.setOnAction(event -> {
             saveToFile();
