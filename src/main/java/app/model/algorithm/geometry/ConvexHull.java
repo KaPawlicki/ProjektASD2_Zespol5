@@ -11,13 +11,13 @@ public class ConvexHull {
     private Point p0;
     private List<Point> points;
 
-    public ConvexHull(Map<Integer,Node> nodes) {
+    public ConvexHull(List<Node> nodes) {
         //sprawdzamy czy mamy wystarczajaco punktow aby utworzyc otoczke
         if(nodes.size() < 3){
             throw new IllegalArgumentException("Number of nodes must be at least 3");
         }
         this.points = new ArrayList<>();
-        for(Node n : nodes.values()) {
+        for(Node n : nodes) {
             this.points.add(new Point(n.getPosition()));
         }
         this.p0 = points.get(0);
