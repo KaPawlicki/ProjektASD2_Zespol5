@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.model.algorithm.text.huffman.HuffmanCoding;
 import app.model.structure.ShireMap;
 import app.util.SceneManager;
 import javafx.animation.FadeTransition;
@@ -16,8 +17,11 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SimulationResultScreenController {
     private ShireMap shireMap;
@@ -204,45 +208,74 @@ public class SimulationResultScreenController {
         speechList.add(new Pair<>('S', "koniec symulacji - samwise"));
     }
 
+    private void addResultToCompressedFile(){
+        String joinedSpeech = speechList.stream()
+                .map(Pair::getValue)
+                .collect(Collectors.joining("\n"));
+
+        if(Files.exists(Path.of("src/main/simulationResults/compressedResults.huf"))){
+            HuffmanCoding.compress(
+                    HuffmanCoding.decompress("src/main/simulationResults/compressedResults.huf")
+                            + "\n\n" +
+                            joinedSpeech,
+                    "src/main/simulationResults/compressedResults.huf"
+            );
+        } else {
+            HuffmanCoding.compress(joinedSpeech, "src/main/simulationResults/compressedResults.huf");
+        }
+    }
+
     @FXML
     public void initialize() {
+        // Wypełnia listę dialogów
         fillSpeechList();
-
-
-
 
         root.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.SPACE) {
-                if(spaceLocked) return;
+                if(spaceLocked) return; // ignoruj spację, jeśli blokada jest aktywne (np. w trakcie animacji zmiany postaci)
 
                 if (typingInProgress) {
+                    // Jeśli animacja pisania trwa, przerywa ją i wyświetla pełny tekst od razu
                     if (lastSpeaker == 'S') {
                         typeText(speechList.get(speechIndex).getValue(), samwiseText, Duration.millis(50));
                     } else {
                         typeText(speechList.get(speechIndex).getValue(), advisorText, Duration.millis(50));
                     }
                 } else if (speechIndex == speechList.size() - 1) {
+                    // Koniec wszystkich dialogów – zapisanie wyników i powrót do menu głównego
+                    addResultToCompressedFile();
                     shireMap.clear();
                     SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
                 } else {
+                    // Przejście do kolejnego dialogu
                     speechIndex++;
 
+                    // Jeśli zmienia się mówca, blokujemy spację na czas przejścia animacji
                     if (speechList.get(speechIndex).getKey() != lastSpeaker) {
                         spaceLocked = true;
                         PauseTransition unlock = new PauseTransition(Duration.millis(1400));
                         unlock.setOnFinished(e -> spaceLocked = false);
                         unlock.play();
                     }
-                    showNextDialog(speechList.get(speechIndex).getKey(), speechList.get(speechIndex).getValue());
+
+                    // Wywołuje dialog
+                    showNextDialog(
+                            speechList.get(speechIndex).getKey(),
+                            speechList.get(speechIndex).getValue()
+                    );
                 }
             } else if (event.getCode() == KeyCode.ESCAPE) {
+                // ESC – szybki powrót do menu głównego, niezależnie od etapu dialogu
                 SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
             }
         });
+
+        // Umożliwia reagowanie na klawiaturę zaraz po uruchomieniu widoku
         root.setFocusTraversable(true);
         Platform.runLater(() -> root.requestFocus());
 
-
+        // Początkowa animacja sceny oraz pierwszego dialogu
         beginingAnimation();
     }
+
 }

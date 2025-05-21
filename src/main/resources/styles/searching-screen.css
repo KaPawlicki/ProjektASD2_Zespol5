@@ -67,6 +67,7 @@
 
 TextFlow {
     -fx-pref-width: 800;
+    -fx-pref-height: 100;
 }
 
 Text {

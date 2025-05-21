@@ -22,13 +22,15 @@ public class SimulationEngine {
     }
 
 
-    public void simulateWholeProcess() {
+    public String simulateWholeProcess() {
+        String output = "";
+
         // tworzenie kopii danych przed symulacją
         Map<Integer, Integer> originalData = stateManager.createDataSnapshot();
 
         try {
             int maxBarleyFlow = flowManager.calculateFieldToBreweryFlow();
-            System.out.println("Maksymalny przepływ jęczmienia z pól do browarów: " + maxBarleyFlow + " ton");
+            output += ("Maksymalny przepływ jęczmienia z pól do browarów: " + maxBarleyFlow + " ton\n");
 
             reduceBarleyInFields(maxBarleyFlow);
 
@@ -50,21 +52,24 @@ public class SimulationEngine {
                     totalBeerProduced += beerProduced;
                 }
             }
-            System.out.println("Całkowita ilość wyprodukowanego piwa: " + totalBeerProduced + " jednostek");
+            output += ("Całkowita ilość wyprodukowanego piwa: " + totalBeerProduced + " jednostek\n");
 
             int maxBeerFlow = flowManager.calculateBreweryToInnFlow();
             int actualBeerDelivered = Math.min(maxBeerFlow, totalBeerProduced);
-            System.out.println("Maksymalny przepływ piwa z browarów do karczm: " + actualBeerDelivered + " jednostek");
+            output += ("Maksymalny przepływ piwa z browarów do karczm: " + actualBeerDelivered + " jednostek\n");
 
             distributeBeerToInns(actualBeerDelivered);
         } finally {
             // przywrócenie oryginalnych danych niezależnie od wyniku działania programu
             stateManager.restoreFromSnapshot(originalData);
         }
+        return output;
     }
 
 
-    public void simulateWholeProcessWithActivation() {
+    public String simulateWholeProcessWithActivation() {
+        String output = "";
+
         // tworzenie kopii danych przed symulacją
         Map<Integer, Integer> originalData = stateManager.createDataSnapshot();
 
@@ -83,8 +88,8 @@ public class SimulationEngine {
                     MaxFlowWithActivation.minCostMaxFlow(capacity, activationCost, fieldIds, breweryIds, fieldCapacities);
 
             int barleyFlow = fieldToBreweryResult.getMaxFlow();
-            System.out.println("Maksymalny przepływ jęczmienia z pól do browarów: " + barleyFlow + " ton");
-            System.out.println("Całkowity koszt aktywacji dróg dla transportu jęczmienia: " + fieldToBreweryResult.getTotalCost());
+            output += ("Maksymalny przepływ jęczmienia z pól do browarów: " + barleyFlow + " ton\n");
+            output += ("Całkowity koszt aktywacji dróg dla transportu jęczmienia: " + fieldToBreweryResult.getTotalCost() + "\n");
 
             // redukcja jęczmienia z pól na podstawie przepływu
             Map<Integer, Integer> barleyHarvestedFromField = new HashMap<>();
@@ -122,7 +127,7 @@ public class SimulationEngine {
                 }
             }
 
-            System.out.println("Całkowita ilość wyprodukowanego piwa: " + totalBeerProduced + " jednostek");
+            output += ("Całkowita ilość wyprodukowanego piwa: " + totalBeerProduced + " jednostek\n");
 
             // przygotowanie limitów dla ilości piwa w browarach
             Map<Integer, Integer> breweryCapacities = new HashMap<>();
@@ -136,9 +141,9 @@ public class SimulationEngine {
                     MaxFlowWithActivation.minCostMaxFlow(capacity, activationCost, breweryIds, innIds, breweryCapacities);
 
             int beerFlow = breweryToInnResult.getMaxFlow();
-            System.out.println("Maksymalny przepływ piwa z browarów do karczm: " + beerFlow + " jednostek");
-            System.out.println("Całkowity koszt aktywacji dróg dla transportu piwa: " + breweryToInnResult.getTotalCost());
-            System.out.println("Całkowity koszt aktywacji dróg: " + (fieldToBreweryResult.getTotalCost() + breweryToInnResult.getTotalCost()));
+            output += ("Maksymalny przepływ piwa z browarów do karczm: " + beerFlow + " jednostek\n");
+            output += ("Całkowity koszt aktywacji dróg dla transportu piwa: " + breweryToInnResult.getTotalCost() + "\n");
+            output += ("Całkowity koszt aktywacji dróg: " + (fieldToBreweryResult.getTotalCost() + breweryToInnResult.getTotalCost()) + "\n");
 
             // redukcja piwa z browarów na podstawie przepływu
             for (int breweryId : breweryIds) {
@@ -168,6 +173,7 @@ public class SimulationEngine {
             // przywrócenie oryginalnych danych niezależnie od wyniku działania programu
             stateManager.restoreFromSnapshot(originalData);
         }
+        return output;
     }
 
 
@@ -185,7 +191,7 @@ public class SimulationEngine {
 
             int harvestedFromField = field.harvest(remainingToHarvest);
             remainingToHarvest -= harvestedFromField;
-            System.out.println("Zebrano " + harvestedFromField + " ton jęczmienia z pola " + field.getType());
+            //System.out.println("Zebrano " + harvestedFromField + " ton jęczmienia z pola " + field.getType());
         }
     }
 
@@ -207,7 +213,7 @@ public class SimulationEngine {
             Inn inn = inns.get(i);
             int beerToDeliver = beerPerInn + (i < remainder ? 1 : 0);
             inn.receiveBeerFromBrewery(beerToDeliver);
-            System.out.println("Dostarczono " + beerToDeliver + " jednostek piwa do karczmy " + inn.getType());
+            //System.out.println("Dostarczono " + beerToDeliver + " jednostek piwa do karczmy " + inn.getType());
         }
     }
 }

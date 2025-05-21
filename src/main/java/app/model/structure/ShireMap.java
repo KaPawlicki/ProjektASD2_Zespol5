@@ -86,11 +86,11 @@ public class ShireMap {
         return maxId;
     }
 
-    public void simulateWholeProcess() {
-        simulationEngine.simulateWholeProcess();
+    public String simulateWholeProcess() {
+        return simulationEngine.simulateWholeProcess();
     }
 
-    public void simulateWholeProcessWithActivation() {
-        simulationEngine.simulateWholeProcessWithActivation();
+    public String simulateWholeProcessWithActivation() {
+        return simulationEngine.simulateWholeProcessWithActivation();
     }
 }
