@@ -40,6 +40,7 @@ public class MainMenuController {
 
     @FXML
     public void initialize() {
+        ensureDirectoriesExist();
         changeStartButton();
 
         //obsluga przycisku do wczytywania z pliku
@@ -75,6 +76,18 @@ public class MainMenuController {
 
     public void changeStartButton() {
         startButton.setDisable(shireMap.isEmpty());
+    }
+
+    public static void ensureDirectoriesExist() {
+        createDirectoryIfMissing("src/main/savedSimulations/");
+        createDirectoryIfMissing("src/main/simulationResults/");
+    }
+
+    private static void createDirectoryIfMissing(String path) {
+        File directory = new File(path);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
     }
 
     public void readFromFile(String initialPath) {
