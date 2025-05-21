@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.model.algorithm.text.huffman.HuffmanCoding;
+import app.model.simulation.AlgorithmRunner;
 import app.model.structure.ShireMap;
 import app.util.SceneManager;
 import javafx.animation.FadeTransition;
@@ -192,20 +193,44 @@ public class SimulationResultScreenController {
         typingTimeline.play();
     }
 
+    private void startThread(){
+        AlgorithmRunner a1 = new AlgorithmRunner(this.shireMap, "N");
+        AlgorithmRunner a2 = new AlgorithmRunner(this.shireMap, "A");
+        AlgorithmRunner a3 = new AlgorithmRunner(this.shireMap, "Q");
+        Thread thread1 = new Thread(a1);
+        Thread thread2 = new Thread(a2);
+        Thread thread3 = new Thread(a3);
+
+
+        thread1.start();
+        thread2.start();
+        thread3.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+            thread3.join();
+            speechList.set(0, new Pair<>('S', a1.getOutput()));
+            speechList.set(1, new Pair<>('S', a2.getOutput()));
+            speechList.set(2, new Pair<>('S', a3.getOutput()));
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     //wystarczy w odpowiedniej kolejnosci wpisac to co ktora posatc ma mowic
     private void fillSpeechList() {
+        speechList.add(new Pair<>('S', ""));
+        speechList.add(new Pair<>('S', ""));
+        speechList.add(new Pair<>('S', ""));
+        speechList.add(new Pair<>('S', ""));
         speechList.add(new Pair<>('S', "przykladowy tekst numer 1 - samwise"));
         speechList.add(new Pair<>('S', "przykladowy tekst numer 2 - samwise"));
-        speechList.add(new Pair<>('A', "przykladowy tekst numer 1 - advisor"));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 3 - samwise"));
-        speechList.add(new Pair<>('A', "przykladowy tekst numer 2 - advisor"));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 4 - samwise"));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 5 - samwise"));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 6 - samwise"));
-        speechList.add(new Pair<>('A', "przykladowy tekst numer 3 - advisor"));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 7 - samwise"));
-        speechList.add(new Pair<>('A', "przykladowy tekst numer 4 - advisor"));
         speechList.add(new Pair<>('S', "koniec symulacji - samwise"));
+        this.startThread();
     }
 
     private void addResultToCompressedFile(){

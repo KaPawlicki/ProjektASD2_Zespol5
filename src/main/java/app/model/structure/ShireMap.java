@@ -93,4 +93,6 @@ public class ShireMap {
     public String simulateWholeProcessWithActivation() {
         return simulationEngine.simulateWholeProcessWithActivation();
     }
+
+    public String simulateWholeProcessWithQuarters() { return simulationEngine.simulateWholeProcessWithQuarters(); }
 }

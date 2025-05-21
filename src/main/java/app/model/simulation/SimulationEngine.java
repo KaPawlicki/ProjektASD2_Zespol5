@@ -1,5 +1,6 @@
 package app.model.simulation;
 
+import app.model.algorithm.geometry.PlaneQuarterPartitioner;
 import app.model.algorithm.networkflow.MaxFlowWithActivation;
 import app.model.algorithm.networkflow.NetworkFlowManager;
 import app.model.structure.*;
@@ -65,7 +66,6 @@ public class SimulationEngine {
         }
         return output;
     }
-
 
     public String simulateWholeProcessWithActivation() {
         String output = "";
@@ -176,6 +176,11 @@ public class SimulationEngine {
         return output;
     }
 
+    public String simulateWholeProcessWithQuarters(){
+        PlaneQuarterPartitioner planeQuarterPartitioner = new PlaneQuarterPartitioner(this.shireMap.getNodes());
+        String s = this.simulateWholeProcessWithActivation();
+        return s;
+    }
 
     private void reduceBarleyInFields(int totalHarvestedBarley) {
         List<Field> fields = new ArrayList<>();
