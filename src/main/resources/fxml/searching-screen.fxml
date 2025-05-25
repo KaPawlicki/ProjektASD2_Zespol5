@@ -26,25 +26,26 @@
             </fx:define>
 
             <Label>Wybierz algorytm: </Label>
-            <RadioButton text="Rabin-Karp" toggleGroup="$algorithmChoice" />
-            <RadioButton text="KMP" toggleGroup="$algorithmChoice" />
-            <RadioButton text="Boyer-Moore" toggleGroup="$algorithmChoice" />
+            <RadioButton text="Rabin-Karp" toggleGroup="$algorithmChoice" styleClass="radioButton"/>
+            <RadioButton text="KMP" toggleGroup="$algorithmChoice" styleClass="radioButton"/>
+            <RadioButton text="Boyer-Moore" toggleGroup="$algorithmChoice" styleClass="radioButton"/>
+            <RadioButton text="Algorytm naiwny" toggleGroup="$algorithmChoice" styleClass="radioButton"/>
         </VBox>
         <HBox styleClass="searchContainer" AnchorPane.topAnchor="100" AnchorPane.rightAnchor="60">
-            <TextField promptText="Wyszukaj..."/>
-            <Button/>
+            <TextField fx:id="searchField" promptText="Wyszukaj..."/>
+            <Button fx:id="searchButton"/>
         </HBox>
-        <AnchorPane styleClass="bottomContainer" AnchorPane.bottomAnchor="90" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
-            <Label AnchorPane.topAnchor="10" AnchorPane.leftAnchor="90">6 z 14 wystapien</Label>
-            <Label AnchorPane.topAnchor="10" AnchorPane.rightAnchor="90">14.05.2025 13:27</Label>
+        <AnchorPane fx:id="bottomContainer" styleClass="bottomContainer" AnchorPane.bottomAnchor="50" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+            <Label fx:id="occurrenceCounter" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="90"/>
+<!--            <Label AnchorPane.topAnchor="10" AnchorPane.rightAnchor="90">14.05.2025 13:27</Label>-->
             <HBox styleClass="resultsBox" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                <Button/>
+                <Button fx:id="prevButton"/>
                 <TextFlow>
                     <Text fx:id="textBeforeFoundWord" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod lectus sit amet " />
                     <Text fx:id="foundWord" text="lobortis" styleClass="highlitedWord"/>
                     <Text fx:id="textAfterFoundWord" text=" porttitor. Pellentesque aliquet vestibulum justo, dictum pulvinar libero accumsan ac. C" />
                 </TextFlow>
-                <Button/>
+                <Button fx:id="nextButton"/>
             </HBox>
         </AnchorPane>
 

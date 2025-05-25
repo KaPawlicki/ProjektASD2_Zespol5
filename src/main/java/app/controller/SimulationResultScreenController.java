@@ -226,10 +226,9 @@ public class SimulationResultScreenController {
         speechList.add(new Pair<>('S', ""));
         speechList.add(new Pair<>('S', ""));
         speechList.add(new Pair<>('S', ""));
-        speechList.add(new Pair<>('S', ""));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 1 - samwise"));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 2 - samwise"));
-        speechList.add(new Pair<>('S', "koniec symulacji - samwise"));
+        speechList.add(new Pair<>('S', "przykladowy tekst numer 1 - samwise\n"));
+        speechList.add(new Pair<>('S', "przykladowy tekst numer 2 - samwise\n"));
+        speechList.add(new Pair<>('S', "koniec symulacji - samwise\n"));
         this.startThread();
     }
 
@@ -241,7 +240,7 @@ public class SimulationResultScreenController {
         if(Files.exists(Path.of("src/main/simulationResults/compressedResults.huf"))){
             HuffmanCoding.compress(
                     HuffmanCoding.decompress("src/main/simulationResults/compressedResults.huf")
-                            + "\n\n" +
+                            + "\n" +
                             joinedSpeech,
                     "src/main/simulationResults/compressedResults.huf"
             );

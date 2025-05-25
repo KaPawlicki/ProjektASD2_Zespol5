@@ -50,8 +50,9 @@
 }
 
 .bottomContainer {
-    -fx-pref-height: 160;
+    -fx-pref-height: 230;
     -fx-background-color: rgba(39, 36, 36, 0.75);
+    -fx-opacity: 0;
 }
 
 .bottomContainer Label {
@@ -67,7 +68,10 @@
 
 TextFlow {
     -fx-pref-width: 800;
-    -fx-pref-height: 100;
+    -fx-pref-height: 170;
+    -fx-max-height: 170;
+    -fx-min-height: 170;
+    -fx-overflow: hidden;
 }
 
 Text {

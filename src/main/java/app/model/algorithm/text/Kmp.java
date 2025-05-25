@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Kmp {
-    public static List<Integer> KMPSearch(String pattern, String text) {
+    public static List<Integer> search(String pattern, String text) {
         List<Integer> positions = new ArrayList<>();
 
         int m = pattern.length();

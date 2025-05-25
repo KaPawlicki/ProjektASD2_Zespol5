@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static app.model.algorithm.text.Kmp.KMPSearch;
+
 
 
 public class Main extends Application {
@@ -21,11 +21,11 @@ public class Main extends Application {
         SceneManager.setSize(1200, 800);
         SceneManager.setIcon("/images/icon.png");
 
-        SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
-        //SceneManager.switchScene("/fxml/searching-screen.fxml", "/styles/searching-screen.css");
+        //SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
+        SceneManager.switchScene("/fxml/searching-screen.fxml", "/styles/searching-screen.css");
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) {
         launch();
     }
 }

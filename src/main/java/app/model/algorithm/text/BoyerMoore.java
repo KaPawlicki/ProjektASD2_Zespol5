@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class BoyerMoore {
 
-    public static List<Integer> findAllOccurrences(String text, String pattern) {
+    public static List<Integer> search(String pattern, String text) {
         List<Integer> occurrences = new ArrayList<>();
 
         if (pattern == null || text == null || pattern.length() > text.length() || pattern.isEmpty()) {
