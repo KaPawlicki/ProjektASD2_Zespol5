@@ -2,6 +2,7 @@ package app;
 
 import app.model.algorithm.text.BoyerMoore;
 import app.model.algorithm.text.Kmp;
+import app.model.algorithm.text.NaiveStringSearch;
 import app.model.algorithm.text.huffman.HuffmanCoding;
 import app.util.SceneManager;
 import javafx.application.Application;

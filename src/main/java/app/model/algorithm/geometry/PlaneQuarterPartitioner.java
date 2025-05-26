@@ -13,7 +13,7 @@ import java.util.Map;
 public class PlaneQuarterPartitioner {
     private final Map<Integer, Node> nodes;
     private final Map<Integer, List<Node>> quarterMap; // listy wierzchołków poszczególnych ćwiartek
-    private final Map<Integer, List<Point>> boundaryPointsQuarters; // listy współrzędnych punktów otoczki wypukłej dla karzdej ćwiartki
+    private final Map<Integer, List<Point>> boundaryPointsQuarters; // listy współrzędnych punktów otoczki wypukłej dla kazdej ćwiartki
 
     public Map<Integer, List<Node>> getQuarterMap() {
         return quarterMap;
