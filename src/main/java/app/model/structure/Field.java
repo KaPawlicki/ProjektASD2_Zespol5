@@ -1,10 +1,19 @@
 package app.model.structure;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import java.awt.*;
 
+@Getter
+@Setter
+@ToString(callSuper = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Field extends Node {
-    private int barleyAmount; // ilość wyrastanego jęczmienia
-    private int currentAmountOfBarleyInTheField; // dostepna ilosc jeczmienia do zebrania
+    int barleyAmount;
+    int currentAmountOfBarleyInTheField;
 
     public Field(int id, String type, Point position, int barleyAmount) {
         super(id, type, position);
@@ -12,25 +21,13 @@ public class Field extends Node {
         this.currentAmountOfBarleyInTheField = barleyAmount;
     }
 
-    public int getBarleyAmount() {return barleyAmount;}
-    public void setBarleyAmount(int barleyAmount) {this.barleyAmount = barleyAmount;}
-    public int getCurrentAmountOfBarleyInTheField() {return currentAmountOfBarleyInTheField;}
-    public void setCurrentAmountOfBarleyInTheField(int currentAmountOfBarleyInTheField) {this.currentAmountOfBarleyInTheField = Math.max(0,currentAmountOfBarleyInTheField);} // Max jest po to aby nie można było ustawić wartości ujemnej
+    public void setCurrentAmountOfBarleyInTheField(int currentAmountOfBarleyInTheField) {
+        this.currentAmountOfBarleyInTheField = Math.max(0, currentAmountOfBarleyInTheField);
+    }
 
-    // zbiór jęczmienia z pola
     public int harvest(int amount) {
         int harvested = Math.min(amount, currentAmountOfBarleyInTheField);
         currentAmountOfBarleyInTheField -= harvested;
         return harvested;
-    }
-
-    @Override
-    public String toString() {
-        return "Field{" +
-                "barleyAmount=" + barleyAmount +
-                ", currentAmountOfBarleyInTheField=" + currentAmountOfBarleyInTheField +
-                ", outgoingEdges=" + outgoingEdges +
-                ", incomingEdges=" + incomingEdges +
-                '}';
     }
 }

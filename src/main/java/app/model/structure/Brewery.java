@@ -1,37 +1,24 @@
 package app.model.structure;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import java.awt.*;
 
+@Getter
+@Setter
+@ToString(callSuper = true)
 public class Brewery extends Node {
-    private static final int BEER_PER_TON_OF_BARLEY = 10; // stały przelicznik ile z tony jęczmienia można wytworzyć piwa
-   // private static int amountOfBarleyProcessed = 10; // ile dany browar może przetworzyć jęczmienia w tonach
-    private int currentAmountOfBeerProduced; // aktualana ilość wyprodukowanego piwa
+    private static final int BEER_PER_TON_OF_BARLEY = 10;
+    private int currentAmountOfBeerProduced = 0;
 
     public Brewery(int id, String type, Point position) {
         super(id, type, position);
-        this.currentAmountOfBeerProduced = 0;
     }
 
-    //public static int getAmountOfBarleyProcessed() {return amountOfBarleyProcessed;}
-    //public static void setAmountOfBarleyProcessed(int amount) {amountOfBarleyProcessed = amount;}
-    public int getCurrentAmountOfBeerProduced() {return currentAmountOfBeerProduced;}
-    public void setCurrentAmountOfBeerProduced(int currentAmountOfBeerProduced) {this.currentAmountOfBeerProduced = Math.max(0, currentAmountOfBeerProduced);}
-
-    public int processBarley(int availableBarley) { //produkcja piwa
-        //int barleyToProcess = Math.min(availableBarley, amountOfBarleyProcessed);
+    public int processBarley(int availableBarley) {
         int producedBeer = availableBarley * BEER_PER_TON_OF_BARLEY;
         currentAmountOfBeerProduced += producedBeer;
         return producedBeer;
     }
-
-
-    @Override
-    public String toString() {
-        return "Brewery{" +
-                "currentAmountOfBeerProduced=" + currentAmountOfBeerProduced +
-                ", outgoingEdges=" + outgoingEdges +
-                ", incomingEdges=" + incomingEdges +
-                '}';
-    }
 }
-
