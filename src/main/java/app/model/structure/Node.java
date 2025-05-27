@@ -1,34 +1,38 @@
 package app.model.structure;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PROTECTED)
 public abstract class Node {
-    private final int id;
-    private String type;
-    private Point position; // pozycja jest reprezentowana jako punkt na płaszczyźnie w postaci P = (x, y)
-    protected List<Edge> outgoingEdges; // lista krawędzi wychodzących z wierzchołka
-    protected List<Edge> incomingEdges; // lista krawędzi wchodzących do wierzchołka
+    final int id;
+    String type;
+    Point position;
+    List<Edge> outgoingEdges = new ArrayList<>();
+    List<Edge> incomingEdges = new ArrayList<>();
 
     public Node(int id, String type, Point position) {
         this.id = id;
         this.type = type;
         this.position = position;
-        outgoingEdges = new ArrayList<>();
-        incomingEdges = new ArrayList<>();
     }
 
-    public int getId() {return id;}
-    public String getType() {return type;}
-    public Point getPosition() {return position;}
-    public List<Edge> getOutgoingEdges() {return outgoingEdges;}
-    public List<Edge> getIncomingEdges() {return incomingEdges;}
+    public void setPosition(int x, int y) {
+        this.position = new Point(x, y);
+    }
 
-    public void setType(String type) {this.type = type;}
-    public void setPosition(Point position) {this.position = position;}
-    public void setPosition(int x, int y) {this.position = new Point(x, y);}
+    public void addOutgoingEdge(Edge e) {
+        outgoingEdges.add(e);
+    }
 
-    public void addOutgoingEdge(Edge e) {outgoingEdges.add(e);}
-    public void addIncomingEdge(Edge e) {incomingEdges.add(e);}
+    public void addIncomingEdge(Edge e) {
+        incomingEdges.add(e);
+    }
 }
