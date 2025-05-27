@@ -5,7 +5,7 @@ import java.util.List;
 
 public class NaiveStringSearch {
 
-    public static List<Integer> findAllOccurrences(String text, String pattern) {
+    public static List<Integer> search(String pattern, String text) {
         List<Integer> occurrences = new ArrayList<>();
 
         // sprawdzenie przypadków brzegowych

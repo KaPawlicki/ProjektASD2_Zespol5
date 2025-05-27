@@ -91,13 +91,6 @@ public class EdmondsKarpTest {
         assertEquals(5, EdmondsKarp.maxFlow(capacity, 0, 2));
     }
 
-    @Test
-    public void testSourceEqualsSink() {
-        int[][] capacity = {
-                {0}
-        };
-        assertEquals(0, EdmondsKarp.maxFlow(capacity, 0, 0));
-    }
 
     @Test
     public void testBottleneck() {

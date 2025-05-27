@@ -14,6 +14,7 @@ public class PlaneQuarterPartitioner {
     private final Map<Integer, Node> nodes;
     private final Map<Integer, List<Node>> quarterMap; // listy wierzchołków poszczególnych ćwiartek
     private final Map<Integer, List<Point>> boundaryPointsQuarters; // listy współrzędnych punktów otoczki wypukłej dla kazdej ćwiartki
+    private Point centerPoint;
 
     public Map<Integer, List<Node>> getQuarterMap() {
         return quarterMap;
@@ -42,6 +43,7 @@ public class PlaneQuarterPartitioner {
     }
 
     public void assignNodesToQuarters(){
+        quarterMap.values().forEach(List::clear); // Resetujemy zawartość ćwiartek
         Point centerPoint = findCenterPoint();
         for(Node node : nodes.values()) {
             Point pos = node.getPosition();
@@ -54,7 +56,36 @@ public class PlaneQuarterPartitioner {
         }
     }
 
+    public void checkBoundaryPointsForQuarters() {
+        for(int i = 0; i < 4; i++){
+            // jeżeli brakuję punktów do utworzenia otoczki to dodajemy odpowiednią ilość w zależności od tego ile punktów znajduje się w boundaryPointsQuaters
+            if(boundaryPointsQuarters.get(i).size() < 3) {
+                // Określenie znaku x/y dla ćwiartki
+                int xSign = (i == 0 || i == 3) ? 1 : -1;
+                int ySign = (i == 0 || i == 1) ? 1 : -1;
+
+                // Bazowy punkt w ćwiartce (10 jednostek od środka)
+                int baseX = centerPoint.x + xSign * 10;
+                int baseY = centerPoint.y + ySign * 10;
+                if(boundaryPointsQuarters.get(i).size() == 2) {
+                    boundaryPointsQuarters.get(i).add(new Point(baseX, baseY));
+                }
+                else if(boundaryPointsQuarters.get(i).size() == 1) {
+                    boundaryPointsQuarters.get(i).add(new Point(baseX, baseY));
+                    boundaryPointsQuarters.get(i).add(new Point(baseX + 5 * xSign, baseY));
+                }
+                else {
+                    boundaryPointsQuarters.get(i).add(new Point(baseX, baseY));
+                    boundaryPointsQuarters.get(i).add(new Point(baseX + 5 * xSign, baseY));
+                    boundaryPointsQuarters.get(i).add(new Point(baseX, baseY + 5 * ySign));
+                }
+            }
+        }
+    }
+
     public void createPolygonForQuarters(){
+        boundaryPointsQuarters.clear();
+        checkBoundaryPointsForQuarters();
         for(int i = 0; i < 4; i++){
             ConvexHull convexHull = new ConvexHull(quarterMap.get(i));
             this.boundaryPointsQuarters.put(i, convexHull.createConvexHull());
@@ -62,7 +93,7 @@ public class PlaneQuarterPartitioner {
     }
 
     public void setBarleyAmountForQuarters(int quarter, int amount){
-        if(quarter < 0 || quarter > 3) throw new IllegalArgumentException("Quarter must be between 0 and 4");
+        if(quarter < 0 || quarter > 3) throw new IllegalArgumentException("Quarter must be between 0 and 3");
         List<Node> quarterNodes = quarterMap.get(quarter);
         for(Node node : quarterNodes) {
             if(node instanceof Field){

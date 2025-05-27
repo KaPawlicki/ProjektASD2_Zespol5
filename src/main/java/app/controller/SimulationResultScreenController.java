@@ -148,7 +148,7 @@ public class SimulationResultScreenController {
     }
 
     public void showToast(){
-        toastMessage.setText("Aby kontynuować wciśnij spacje");
+        toastMessage.setText("Aby kontynuować wciśnij dowolny klawisz");
 
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.0), toastMessage);
         fadeIn.setFromValue(0.0);
@@ -249,49 +249,59 @@ public class SimulationResultScreenController {
         }
     }
 
+    private void skipHandler() {
+        if(spaceLocked) return; // ignoruj spację, jeśli blokada jest aktywne (np. w trakcie animacji zmiany postaci)
+
+        if (typingInProgress) {
+            // Jeśli animacja pisania trwa, przerywa ją i wyświetla pełny tekst od razu
+            if (lastSpeaker == 'S') {
+                typeText(speechList.get(speechIndex).getValue(), samwiseText, Duration.millis(50));
+            } else {
+                typeText(speechList.get(speechIndex).getValue(), advisorText, Duration.millis(50));
+            }
+        } else if (speechIndex == speechList.size() - 1) {
+            // Koniec wszystkich dialogów – zapisanie wyników i powrót do menu głównego
+            addResultToCompressedFile();
+            shireMap.clear();
+            SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
+        } else {
+            // Przejście do kolejnego dialogu
+            speechIndex++;
+
+            // Jeśli zmienia się mówca, blokujemy spację na czas przejścia animacji
+            if (speechList.get(speechIndex).getKey() != lastSpeaker) {
+                spaceLocked = true;
+                PauseTransition unlock = new PauseTransition(Duration.millis(1400));
+                unlock.setOnFinished(e -> spaceLocked = false);
+                unlock.play();
+            }
+
+            // Wywołuje dialog
+            showNextDialog(
+                    speechList.get(speechIndex).getKey(),
+                    speechList.get(speechIndex).getValue()
+            );
+        }
+    }
+
     @FXML
     public void initialize() {
         // Wypełnia listę dialogów
         fillSpeechList();
 
         root.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.SPACE) {
-                if(spaceLocked) return; // ignoruj spację, jeśli blokada jest aktywne (np. w trakcie animacji zmiany postaci)
-
-                if (typingInProgress) {
-                    // Jeśli animacja pisania trwa, przerywa ją i wyświetla pełny tekst od razu
-                    if (lastSpeaker == 'S') {
-                        typeText(speechList.get(speechIndex).getValue(), samwiseText, Duration.millis(50));
-                    } else {
-                        typeText(speechList.get(speechIndex).getValue(), advisorText, Duration.millis(50));
-                    }
-                } else if (speechIndex == speechList.size() - 1) {
-                    // Koniec wszystkich dialogów – zapisanie wyników i powrót do menu głównego
-                    addResultToCompressedFile();
-                    shireMap.clear();
-                    SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
-                } else {
-                    // Przejście do kolejnego dialogu
-                    speechIndex++;
-
-                    // Jeśli zmienia się mówca, blokujemy spację na czas przejścia animacji
-                    if (speechList.get(speechIndex).getKey() != lastSpeaker) {
-                        spaceLocked = true;
-                        PauseTransition unlock = new PauseTransition(Duration.millis(1400));
-                        unlock.setOnFinished(e -> spaceLocked = false);
-                        unlock.play();
-                    }
-
-                    // Wywołuje dialog
-                    showNextDialog(
-                            speechList.get(speechIndex).getKey(),
-                            speechList.get(speechIndex).getValue()
-                    );
-                }
-            } else if (event.getCode() == KeyCode.ESCAPE) {
+            if (event.getCode() == KeyCode.ESCAPE) {
                 // ESC – szybki powrót do menu głównego, niezależnie od etapu dialogu
                 SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
+            } else {
+                // dowolny klawisz - przewin
+                skipHandler();
             }
+        });
+
+        root.setOnMouseClicked(event -> {
+            // LBM - pominiecie dialogu lub przejscie dalej
+            skipHandler();
         });
 
         // Umożliwia reagowanie na klawiaturę zaraz po uruchomieniu widoku
