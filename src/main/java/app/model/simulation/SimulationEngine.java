@@ -5,10 +5,7 @@ import app.model.algorithm.networkflow.MaxFlowWithActivation;
 import app.model.algorithm.networkflow.NetworkFlowManager;
 import app.model.structure.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class SimulationEngine {
@@ -178,6 +175,11 @@ public class SimulationEngine {
 
     public String simulateWholeProcessWithQuarters(){
         PlaneQuarterPartitioner planeQuarterPartitioner = new PlaneQuarterPartitioner(this.shireMap.getNodes());
+        Random rand = new Random();
+        for(int i = 0; i < 4; i++) {
+            double multiplier = 1 + Math.random();
+            planeQuarterPartitioner.setBarleyAmountForQuarters(i, multiplier);
+        }
         String s = this.simulateWholeProcessWithActivation();
         return s;
     }

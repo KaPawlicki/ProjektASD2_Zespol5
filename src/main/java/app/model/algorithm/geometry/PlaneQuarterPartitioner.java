@@ -92,13 +92,13 @@ public class PlaneQuarterPartitioner {
         }
     }
 
-    public void setBarleyAmountForQuarters(int quarter, int amount){
+    public void setBarleyAmountForQuarters(int quarter, double multiplier){
         if(quarter < 0 || quarter > 3) throw new IllegalArgumentException("Quarter must be between 0 and 3");
         List<Node> quarterNodes = quarterMap.get(quarter);
         for(Node node : quarterNodes) {
             if(node instanceof Field){
                 Field f = (Field) node;
-                f.setBarleyAmount(amount);
+                f.setBarleyAmount((int) Math.round( (double) f.getBarleyAmount() * multiplier));
             }
         }
     }
