@@ -5,6 +5,7 @@ import app.model.simulation.SimulationEngine;
 import app.model.simulation.StateManager;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ShireMap {
@@ -94,5 +95,5 @@ public class ShireMap {
         return simulationEngine.simulateWholeProcessWithActivation();
     }
 
-    public String simulateWholeProcessWithQuarters() { return simulationEngine.simulateWholeProcessWithQuarters(); }
+    public List<String> simulateWholeProcessWithQuarters() { return simulationEngine.simulateWholeProcessWithQuarters(); }
 }

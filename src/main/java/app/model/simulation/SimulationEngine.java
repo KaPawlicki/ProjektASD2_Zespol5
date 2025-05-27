@@ -5,7 +5,9 @@ import app.model.algorithm.networkflow.MaxFlowWithActivation;
 import app.model.algorithm.networkflow.NetworkFlowManager;
 import app.model.structure.*;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 
 public class SimulationEngine {
@@ -28,7 +30,7 @@ public class SimulationEngine {
 
         try {
             int maxBarleyFlow = flowManager.calculateFieldToBreweryFlow();
-            output += ("Maksymalny przepływ jęczmienia z pól do browarów: " + maxBarleyFlow + " ton\n");
+            output += ("– maksymalny przepływ jęczmienia z pól do browarów wynosi: " + maxBarleyFlow + " ton.\n");
 
             reduceBarleyInFields(maxBarleyFlow);
 
@@ -50,11 +52,11 @@ public class SimulationEngine {
                     totalBeerProduced += beerProduced;
                 }
             }
-            output += ("Całkowita ilość wyprodukowanego piwa: " + totalBeerProduced + " jednostek\n");
+            output += ("– z tego jęczmienia da się uwarzyć: " + totalBeerProduced + " jednostek piwa\n");
 
             int maxBeerFlow = flowManager.calculateBreweryToInnFlow();
             int actualBeerDelivered = Math.min(maxBeerFlow, totalBeerProduced);
-            output += ("Maksymalny przepływ piwa z browarów do karczm: " + actualBeerDelivered + " jednostek\n");
+            output += ("– a do karczm można dostarczyć: " + actualBeerDelivered + " jednostek trunku\n");
 
             distributeBeerToInns(actualBeerDelivered);
         } finally {
@@ -85,8 +87,7 @@ public class SimulationEngine {
                     MaxFlowWithActivation.minCostMaxFlow(capacity, activationCost, fieldIds, breweryIds, fieldCapacities);
 
             int barleyFlow = fieldToBreweryResult.getMaxFlow();
-            output += ("Maksymalny przepływ jęczmienia z pól do browarów: " + barleyFlow + " ton\n");
-            output += ("Całkowity koszt aktywacji dróg dla transportu jęczmienia: " + fieldToBreweryResult.getTotalCost() + "\n");
+            output += ("Po uwzględnieniu kosztów napraw każdej z dróg, łączny koszt ich naprawy dla transportu jęczmienia wyniósł: " + fieldToBreweryResult.getTotalCost() + " monet, ");
 
             // redukcja jęczmienia z pól na podstawie przepływu
             Map<Integer, Integer> barleyHarvestedFromField = new HashMap<>();
@@ -124,7 +125,6 @@ public class SimulationEngine {
                 }
             }
 
-            output += ("Całkowita ilość wyprodukowanego piwa: " + totalBeerProduced + " jednostek\n");
 
             // przygotowanie limitów dla ilości piwa w browarach
             Map<Integer, Integer> breweryCapacities = new HashMap<>();
@@ -138,9 +138,8 @@ public class SimulationEngine {
                     MaxFlowWithActivation.minCostMaxFlow(capacity, activationCost, breweryIds, innIds, breweryCapacities);
 
             int beerFlow = breweryToInnResult.getMaxFlow();
-            output += ("Maksymalny przepływ piwa z browarów do karczm: " + beerFlow + " jednostek\n");
-            output += ("Całkowity koszt aktywacji dróg dla transportu piwa: " + breweryToInnResult.getTotalCost() + "\n");
-            output += ("Całkowity koszt aktywacji dróg: " + (fieldToBreweryResult.getTotalCost() + breweryToInnResult.getTotalCost()) + "\n");
+            output += ("a dla dostarczenia piwa – kolejne : " + breweryToInnResult.getTotalCost() + " monet.\n");
+            output += ("W sumie cały plan transportowy opiewa na: " + (fieldToBreweryResult.getTotalCost() + breweryToInnResult.getTotalCost()) + " złotych monet, i to bez zmniejszenia ani o jedną kroplę trunku trafiającego do karczm!");
 
             // redukcja piwa z browarów na podstawie przepływu
             for (int breweryId : breweryIds) {
@@ -173,15 +172,21 @@ public class SimulationEngine {
         return output;
     }
 
-    public String simulateWholeProcessWithQuarters(){
+    public List<String> simulateWholeProcessWithQuarters(){
+        List<String> output = new ArrayList<>();
         PlaneQuarterPartitioner planeQuarterPartitioner = new PlaneQuarterPartitioner(this.shireMap.getNodes());
-        Random rand = new Random();
+
+        String firstSpeech = "Granice ćwiartek przedstawiają się następująco:\n\n";
+        Map<Integer, List<Point>> bounadryPoints = planeQuarterPartitioner.getBoundaryPointsQuarters();
         for(int i = 0; i < 4; i++) {
             double multiplier = 1 + Math.random();
             planeQuarterPartitioner.setBarleyAmountForQuarters(i, multiplier);
+            firstSpeech += "Ćwiartka 1: " + bounadryPoints.get(i) + " - współczynnik: " + multiplier + "\n";
         }
-        String s = this.simulateWholeProcessWithActivation();
-        return s;
+        String secondSpeech = this.simulateWholeProcess();
+        output.add(firstSpeech);
+        output.add(secondSpeech);
+        return output;
     }
 
     private void reduceBarleyInFields(int totalHarvestedBarley) {

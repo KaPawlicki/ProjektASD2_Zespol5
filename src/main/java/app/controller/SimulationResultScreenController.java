@@ -201,7 +201,6 @@ public class SimulationResultScreenController {
         Thread thread2 = new Thread(a2);
         Thread thread3 = new Thread(a3);
 
-
         thread1.start();
         thread2.start();
         thread3.start();
@@ -210,9 +209,12 @@ public class SimulationResultScreenController {
             thread1.join();
             thread2.join();
             thread3.join();
-            speechList.set(0, new Pair<>('S', a1.getOutput()));
-            speechList.set(1, new Pair<>('S', a2.getOutput()));
-            speechList.set(2, new Pair<>('S', a3.getOutput()));
+            speechList.set(5, new Pair<>('A', "Oto, co udało się ustalić, panie Burmistrzu. Przy użyciu algorytmicznego czaru – " +
+                    "zwanego przez wielkich ludzi algorytmem Edmondsa-Karpa obliczyliśmy, że:\n" + a1.getOutput()));
+            speechList.set(10, new Pair<>('A', a2.getOutput()));
+            speechList.set(13, new Pair<>('A', a3.getOutputList().get(0)));
+            speechList.set(15, new Pair<>('A', "Dokładnie tak. Uaktualniliśmy pojemności źródeł w naszej sieci przepływu, a wyniki ponownie przeliczyliśmy. " +
+                    "Okazało się, że po uwzględnieniu różnic regionalnych\n" + a3.getOutputList().get(1)));
         }
         catch (InterruptedException e) {
             e.printStackTrace();
@@ -223,12 +225,42 @@ public class SimulationResultScreenController {
 
     //wystarczy w odpowiedniej kolejnosci wpisac to co ktora posatc ma mowic
     private void fillSpeechList() {
-        speechList.add(new Pair<>('S', ""));
-        speechList.add(new Pair<>('S', ""));
-        speechList.add(new Pair<>('S', ""));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 1 - samwise\n"));
-        speechList.add(new Pair<>('S', "przykladowy tekst numer 2 - samwise\n"));
-        speechList.add(new Pair<>('S', "koniec symulacji - samwise\n"));
+        speechList.add(new Pair<>('S', "Doradco mój, od lat marzę, by karczmy naszej krainy pełne były złocistego trunku. " +
+                "Teraz, gdy pola znów rodzą jęczmień, a browary dymią jak za dawnych czasów – przyszedł czas działać.\n"));
+        speechList.add(new Pair<>('A', "W istocie, panie Burmistrzu. Zebrałeś już dane – znamy położenie pól, browarów i karczm. " +
+                "Wiemy, ile jęczmienia rodzi się z każdego poletka. " +
+                "Co więcej, dzięki mapie Bilba mamy dokładne informacje o drogach między skrzyżowaniami i o tym, " +
+                "ile towaru da się nimi przewieźć. Brakuje jedynie… odpowiedniego planu.\n"));
+        speechList.add(new Pair<>('S', "Otóż to! I tutaj na pomoc przychodzi dziwne urządzenie, " +
+                "które Bilbo przywlókł z dalekich stron – komputer, jak to mówią duzi ludzie. " +
+                "Czy moglibyśmy go użyć, by obliczyć... no, jak to się mówi… maksymalny przepływ?\n"));
+        speechList.add(new Pair<>('A', "Tak, panie. Wprowadziliśmy dane do modelu sieci przepływów. " +
+                "Każde pole traktujemy jak źródło jęczmienia, browary jako źródła piwa, a karczmy – jako ujścia trunku. " +
+                "Drogi między skrzyżowaniami to krawędzie w grafie, z pojemnościami odpowiadającymi ilościom, " +
+                "jakie można przetransportować.\n"));
+        speechList.add(new Pair<>('S', "I ileż to piwa udało się dostarczyć do karczm?\n"));
+        speechList.add(new Pair<>('A', ""));
+        speechList.add(new Pair<>('S', "Doskonała robota! Ale słyszałem, że wiele dróg po rządach Sharkeya uległo zniszczeniu...\n"));
+        speechList.add(new Pair<>('A', "Niestety tak, ale Peregrin i Meriadok zbadali już sprawę – " +
+                "do każdej drogi przypisaliśmy koszt jej naprawy. Teraz nasz cel to: utrzymać ilość dostarczanego piwa, " +
+                "ale przy jak najniższym koszcie napraw.\n"));
+        speechList.add(new Pair<>('S', "I jak poradziliście sobie z tym zadaniem?\n"));
+        speechList.add(new Pair<>('A', "Panie Burmistrzu, korzystając z nowego, bardziej złożonego algorytmu – " +
+                "opracowanego przez najtęższe umysły Krain Ludzi – udało się wyznaczyć nie tylko największą możliwą ilość " +
+                "jęczmienia i piwa, jaką możemy przetransportować… ale także zminimalizować koszty napraw sieci dróg, " +
+                "którą można tego dokonać.\n"));
+        speechList.add(new Pair<>('A', ""));
+        speechList.add(new Pair<>('S', "Dobrze, dobrze… Ale co z ćwiartkami Shire? Peregrin opowiadał, że w jednej codziennie pada, a w innej susza, że aż ziemia pęka. " +
+                "Mówił też, że różnie z nawozem — jedni mają najlepszy kompost, inni tylko popiół z ogniska… " +
+                "Nie możemy przecież zakładać, że każde wszedzie rodzi sie tyle samo jęczmienia!\n"));
+        speechList.add(new Pair<>('A', "I słusznie, panie Burmistrzu. Wzięliśmy to pod uwagę. " +
+                "Dla każdej ćwiartki wyznaczyliśmy współczynnik urodzajności — zależny od pogody i nawożenia, o których wspominał Peregrin. " +
+                "Na jego podstawie mnożymy bazową ilość jęczmienia, jaką rodzi każde pole, w zależności od tego, w której ćwiartce się znajduje.\n"));
+        speechList.add(new Pair<>('A', ""));
+        speechList.add(new Pair<>('S', "Czyli teraz każde pole daje tyle jęczmienia, ile wynika z jego ćwiartki?\n"));
+        speechList.add(new Pair<>('A', ""));
+        speechList.add(new Pair<>('S', "Dobrze zatem. Niech karczmy napełnią się śmiechem, kufle — piwem, a hobbici — spokojem." +
+                " A my będziemy wiedzieć, że za tym wszystkim stoi porządny plan… i odrobina algorytmiki.\n"));
         this.startThread();
     }
 
