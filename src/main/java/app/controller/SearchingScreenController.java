@@ -2,10 +2,12 @@ package app.controller;
 
 import app.model.algorithm.text.BoyerMoore;
 import app.model.algorithm.text.Kmp;
+import app.model.algorithm.text.NaiveStringSearch;
 import app.model.algorithm.text.RabinKarp;
 import app.model.algorithm.text.huffman.HuffmanCoding;
 import app.model.structure.ShireMap;
 import app.util.SceneManager;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -52,84 +55,25 @@ public class SearchingScreenController {
     private Button prevButton;
     @FXML
     private Label occurrenceCounter;
+    @FXML
+    private Label errorMessage;
 
     public SearchingScreenController(ShireMap shireMap) {
         this.shireMap = shireMap;
     }
 
-    @FXML
-    public void initialize() {
-        Platform.runLater(() -> root.requestFocus());
-
-        //obluga klawiatury
-        root.setOnKeyPressed(event -> {
-            //wyjscie
-            if (event.getCode() == KeyCode.ESCAPE) {
-                SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
-            }
-            //nawigacja miedzy wysatapieniami
-            if(resultVisible){
-                if (event.getCode() == KeyCode.LEFT) {
-                    showNextOccurrence(-1);
-                }
-                if (event.getCode() == KeyCode.RIGHT) {
-                    showNextOccurrence(1);
-                }
-            }
-        });
-        root.setFocusTraversable(true);
-
-        //enter w polu wyszukiwania
-        searchField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                search();
-                root.requestFocus();
-            }
-        });
-
-        //przycisk wyjscia
-        exitButton.setOnAction(event -> {
-            SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
-        });
-
-        //przycisk wyszukiwania
-        searchButton.setOnAction(event -> {
-            search();
-            root.requestFocus();
-        });
-
-        //nawigacja miedzy wysatapieniami
-        nextButton.setOnAction(event -> {
-            showNextOccurrence(1);
-            root.requestFocus();
-        });
-
-        prevButton.setOnAction(event -> {
-            showNextOccurrence(-1);
-            root.requestFocus();
-        });
-
-        //zwrocenie focusa rootowi przez radio
-        Set<Node> radios = root.lookupAll(".radioButton");
-        for (Node node : radios) {
-            if (node instanceof RadioButton rb) {
-                rb.setOnAction(e -> Platform.runLater(() -> root.requestFocus()));
-            }
-        }
-    }
-
     private void search() {
         if (searchField.getText().isEmpty()) {
-            System.out.println("puste wyszukanie");
+            showErrorMessage("Pole wyszukiwania nie moze byc puste");
             return;
         }
         if (!Files.exists(Path.of("src/main/simulationResults/compressedResults.huf"))) {
-            System.out.println("nie ma jeszcze zadnych danych");
+            showErrorMessage("Nie ma jeszcze zadnych danych");
             return;
         }
 
         if (algorithmChoice.getSelectedToggle() == null) {
-            System.out.println("nie wybrano algorytmu");
+            showErrorMessage("Nie wybrano algorytmu");
             return;
         }
 
@@ -139,12 +83,11 @@ public class SearchingScreenController {
 
         findAllOccurrences();
         if (!(occurrences == null) && !occurrences.isEmpty()) {
-            bottomContainer.setStyle("-fx-opacity: 1;");
-            resultVisible = true;
+            showResultBox();
             occurrenceIndex = 0;
             showNextOccurrence(0);
         } else {
-            System.out.println("brak wynikow");
+            showErrorMessage("Brak wyników wyszukiwania");
         }
     }
 
@@ -152,7 +95,7 @@ public class SearchingScreenController {
         if (Files.exists(Path.of("src/main/simulationResults/compressedResults.huf"))) {
             fileContents = HuffmanCoding.decompress("src/main/simulationResults/compressedResults.huf");
         } else {
-            System.out.println("nie ma pliku");
+            showErrorMessage("Brak zapisanych rozwiązań");
         }
     }
 
@@ -172,7 +115,7 @@ public class SearchingScreenController {
                 occurrences = BoyerMoore.search(searchField.getText(), fileContents);
                 break;
             case "Algorytm naiwny":
-                //occurrences = NaivePatternSearchingAlgorithm.search(searchField.getText(), fileContents);
+                occurrences = NaiveStringSearch.search(searchField.getText(), fileContents);
                 break;
         }
     }
@@ -245,4 +188,87 @@ public class SearchingScreenController {
         occurrenceCounter.setText(occurrenceIndex+1 + " z " + occurrences.size() + " wystapien");
     }
 
+    public void showErrorMessage(String text){
+        bottomContainer.setStyle("-fx-opacity: 0;");
+        errorMessage.setVisible(true);
+        resultVisible = false;
+        errorMessage.setText(text);
+
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), errorMessage);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+
+        fadeIn.play();
+
+        searchField.requestFocus();
+    }
+
+    public void showResultBox(){
+        bottomContainer.setStyle("-fx-opacity: 1;");
+        errorMessage.setVisible(false);
+        resultVisible = true;
+        root.requestFocus();
+    }
+
+    @FXML
+    public void initialize() {
+        Platform.runLater(() -> root.requestFocus());
+
+        //obluga klawiatury
+        root.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                //wyjscie
+                SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
+            } else if (event.getCode() == KeyCode.ENTER) {
+                //wyszukiwanie
+                search();
+            }
+            //nawigacja miedzy wysatapieniami
+            if(resultVisible){
+                if (event.getCode() == KeyCode.LEFT) {
+                    showNextOccurrence(-1);
+                }
+                if (event.getCode() == KeyCode.RIGHT) {
+                    showNextOccurrence(1);
+                }
+            }
+        });
+        root.setFocusTraversable(true);
+
+        //enter w polu wyszukiwania
+        searchField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                search();
+            }
+        });
+
+        //przycisk wyjscia
+        exitButton.setOnAction(event -> {
+            SceneManager.switchScene("/fxml/main-menu.fxml", "/styles/main-menu.css");
+        });
+
+        //przycisk wyszukiwania
+        searchButton.setOnAction(event -> {
+            search();
+        });
+
+        //nawigacja miedzy wysatapieniami
+        nextButton.setOnAction(event -> {
+            showNextOccurrence(1);
+            root.requestFocus();
+        });
+
+        prevButton.setOnAction(event -> {
+            showNextOccurrence(-1);
+            root.requestFocus();
+        });
+
+        //zwrocenie focusa rootowi przez radio
+        Set<Node> radios = root.lookupAll(".radioButton");
+        for (Node node : radios) {
+            if (node instanceof RadioButton rb) {
+                rb.setOnAction(e -> Platform.runLater(() -> root.requestFocus()));
+            }
+        }
+    }
 }

@@ -39,17 +39,21 @@
             <Label fx:id="occurrenceCounter" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="90"/>
 <!--            <Label AnchorPane.topAnchor="10" AnchorPane.rightAnchor="90">14.05.2025 13:27</Label>-->
             <HBox styleClass="resultsBox" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-                <Button fx:id="prevButton"/>
+                <Button fx:id="prevButton" styleClass="prevButton"/>
                 <TextFlow>
                     <Text fx:id="textBeforeFoundWord" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod lectus sit amet " />
                     <Text fx:id="foundWord" text="lobortis" styleClass="highlitedWord"/>
                     <Text fx:id="textAfterFoundWord" text=" porttitor. Pellentesque aliquet vestibulum justo, dictum pulvinar libero accumsan ac. C" />
                 </TextFlow>
-                <Button fx:id="nextButton"/>
+                <Button fx:id="nextButton" styleClass="nextButton"/>
             </HBox>
         </AnchorPane>
-
+        <StackPane styleClass="errorMessage" AnchorPane.bottomAnchor="80" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+            <Label fx:id="errorMessage"/>
+        </StackPane>
     </AnchorPane>
 
     <Button styleClass="exitButton" fx:id="exitButton" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">X</Button>
+
+
 </AnchorPane>

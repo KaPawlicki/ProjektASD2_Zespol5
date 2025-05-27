@@ -33,6 +33,10 @@
     -fx-background-position: center center;
 }
 
+.searchContainer Button:hover {
+    -fx-background-image: url("../images/hover-over-search.png");
+}
+
 /*.algorithmChoiceContainer {*/
 /*    -fx-background-color: rgba(39, 36, 36, 0.75);*/
 /*}*/
@@ -99,4 +103,42 @@ Text {
 
 .exitButton:hover {
     -fx-background-color: rgba(130, 48, 42, 0.93);
+}
+
+.errorMessage Label {
+    -fx-alignment: center;
+    -fx-pref-width: 1200;
+    -fx-font-size: 26;
+    -fx-text-fill: rgba(255, 255, 255, 0.91);
+    -fx-padding: 0;
+    -fx-font-weight: bold;
+    -fx-opacity: 0;
+}
+
+.nextButton {
+    -fx-pref-height: 50;
+    -fx-pref-width: 50;
+    -fx-background-image: url("../images/right-arrow.png");
+    -fx-background-size: 30;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-color: rgba(53, 49, 49, 0.75);
+}
+
+.nextButton:hover{
+    -fx-background-image: url("../images/hover-over-right-arrow.png");
+}
+
+.prevButton {
+    -fx-pref-height: 50;
+    -fx-pref-width: 50;
+    -fx-background-image: url("../images/left-arrow.png");
+    -fx-background-size: 30;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-color: rgba(53, 49, 49, 0.75);
+}
+
+.prevButton:hover{
+    -fx-background-image: url("../images/hover-over-left-arrow.png");
 }

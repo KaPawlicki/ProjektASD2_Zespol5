@@ -14,7 +14,7 @@ class NaiveStringSearchTest {
         String text = "hello world";
         String pattern = "world";
 
-        List<Integer> result = NaiveStringSearch.findAllOccurrences(text, pattern);
+        List<Integer> result = NaiveStringSearch.search(pattern, text);
         assertEquals(List.of(6), result);
     }
 
@@ -23,7 +23,7 @@ class NaiveStringSearchTest {
         String text = "abcabcabc";
         String pattern = "abc";
 
-        List<Integer> result = NaiveStringSearch.findAllOccurrences(text, pattern);
+        List<Integer> result = NaiveStringSearch.search(pattern, text);
         assertEquals(List.of(0, 3, 6), result);
     }
 
@@ -32,7 +32,7 @@ class NaiveStringSearchTest {
         String text = "abcdefgh";
         String pattern = "xyz";
 
-        List<Integer> result = NaiveStringSearch.findAllOccurrences(text, pattern);
+        List<Integer> result = NaiveStringSearch.search(pattern, text);
         assertTrue(result.isEmpty());
     }
 
@@ -41,7 +41,7 @@ class NaiveStringSearchTest {
         String text = "text";
         String pattern = "";
 
-        List<Integer> result = NaiveStringSearch.findAllOccurrences(text, pattern);
+        List<Integer> result = NaiveStringSearch.search(pattern, text);
         assertTrue(result.isEmpty());
     }
 
@@ -50,7 +50,7 @@ class NaiveStringSearchTest {
         String text = "short";
         String pattern = "toolongpattern";
 
-        List<Integer> result = NaiveStringSearch.findAllOccurrences(text, pattern);
+        List<Integer> result = NaiveStringSearch.search(pattern, text);
         assertTrue(result.isEmpty());
     }
 
@@ -59,7 +59,7 @@ class NaiveStringSearchTest {
         String text = "exact";
         String pattern = "exact";
 
-        List<Integer> result = NaiveStringSearch.findAllOccurrences(text, pattern);
+        List<Integer> result = NaiveStringSearch.search(pattern, text);
         assertEquals(List.of(0), result);
     }
 
@@ -70,7 +70,7 @@ class NaiveStringSearchTest {
         String text = sb.toString();
         String pattern = "needle";
 
-        List<Integer> result = NaiveStringSearch.findAllOccurrences(text, pattern);
+        List<Integer> result = NaiveStringSearch.search(pattern, text);
         assertEquals(List.of(7000), result);
     }
 }
