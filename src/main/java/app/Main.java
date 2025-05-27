@@ -3,14 +3,14 @@ package app;
 import app.model.algorithm.text.BoyerMoore;
 import app.model.algorithm.text.Kmp;
 import app.model.algorithm.text.NaiveStringSearch;
+import app.model.algorithm.text.RabinKarp;
 import app.model.algorithm.text.huffman.HuffmanCoding;
 import app.util.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-
+import java.util.List;
 
 
 public class Main extends Application {
