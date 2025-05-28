@@ -175,13 +175,20 @@ public class SimulationEngine {
     public List<String> simulateWholeProcessWithQuarters(){
         List<String> output = new ArrayList<>();
         PlaneQuarterPartitioner planeQuarterPartitioner = new PlaneQuarterPartitioner(this.shireMap.getNodes());
+        planeQuarterPartitioner.assignNodesToQuarters();
+        planeQuarterPartitioner.createPolygonForQuarters();
 
         String firstSpeech = "Granice ćwiartek przedstawiają się następująco:\n\n";
         Map<Integer, List<Point>> bounadryPoints = planeQuarterPartitioner.getBoundaryPointsQuarters();
         for(int i = 0; i < 4; i++) {
             double multiplier = 1 + Math.random();
             planeQuarterPartitioner.setBarleyAmountForQuarters(i, multiplier);
-            firstSpeech += "Ćwiartka 1: " + bounadryPoints.get(i) + " - współczynnik: " + multiplier + "\n";
+            firstSpeech += "Ćwiartka " + (i+1) + ": [";
+            for(Point p : bounadryPoints.get(i)){
+                firstSpeech += "(" + (int)p.getX() + ", " + (int)p.getY() + "), ";
+            }
+            firstSpeech = firstSpeech.substring(0, firstSpeech.length()-2);
+            firstSpeech += "] - współczynnik wzrostu: " + String.format("%.2f",multiplier) + "\n";
         }
         String secondSpeech = this.simulateWholeProcess();
         output.add(firstSpeech);
