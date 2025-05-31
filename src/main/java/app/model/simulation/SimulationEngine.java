@@ -178,7 +178,7 @@ public class SimulationEngine {
         planeQuarterPartitioner.assignNodesToQuarters();
         planeQuarterPartitioner.createPolygonForQuarters();
 
-        String firstSpeech = "Granice ćwiartek przedstawiają się następująco:\n\n";
+        String firstSpeech = "Granice ćwiartek przedstawiają się następująco:\n";
         Map<Integer, List<Point>> bounadryPoints = planeQuarterPartitioner.getBoundaryPointsQuarters();
         for(int i = 0; i < 4; i++) {
             double multiplier = 1 + Math.random();
