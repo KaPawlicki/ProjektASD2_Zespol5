@@ -28,8 +28,10 @@ public class PlaneQuarterPartitioner {
         this.nodes = nodes;
         this.quarterMap = new HashMap<>();
         this.boundaryPointsQuarters = new HashMap<>();
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 4; i++) {
             quarterMap.put(i, new ArrayList<>());
+            boundaryPointsQuarters.put(i, new ArrayList<>());
+        }
     }
     
 
@@ -44,7 +46,7 @@ public class PlaneQuarterPartitioner {
 
     public void assignNodesToQuarters(){
         quarterMap.values().forEach(List::clear); // Resetujemy zawartość ćwiartek
-        Point centerPoint = findCenterPoint();
+        centerPoint = findCenterPoint();
         for(Node node : nodes.values()) {
             Point pos = node.getPosition();
             int id;
@@ -59,7 +61,7 @@ public class PlaneQuarterPartitioner {
     public void checkBoundaryPointsForQuarters() {
         for(int i = 0; i < 4; i++){
             // jeżeli brakuję punktów do utworzenia otoczki to dodajemy odpowiednią ilość w zależności od tego ile punktów znajduje się w boundaryPointsQuaters
-            if(boundaryPointsQuarters.get(i).size() < 3) {
+            if(quarterMap.get(i).size() < 3) {
                 // Określenie znaku x/y dla ćwiartki
                 int xSign = (i == 0 || i == 3) ? 1 : -1;
                 int ySign = (i == 0 || i == 1) ? 1 : -1;
@@ -67,17 +69,17 @@ public class PlaneQuarterPartitioner {
                 // Bazowy punkt w ćwiartce (10 jednostek od środka)
                 int baseX = centerPoint.x + xSign * 10;
                 int baseY = centerPoint.y + ySign * 10;
-                if(boundaryPointsQuarters.get(i).size() == 2) {
-                    boundaryPointsQuarters.get(i).add(new Point(baseX, baseY));
+                if(quarterMap.get(i).size() == 2) {
+                    quarterMap.get(i).add(new Field(-1, "", new Point(baseX, baseY), 0));
                 }
-                else if(boundaryPointsQuarters.get(i).size() == 1) {
-                    boundaryPointsQuarters.get(i).add(new Point(baseX, baseY));
-                    boundaryPointsQuarters.get(i).add(new Point(baseX + 5 * xSign, baseY));
+                else if(quarterMap.get(i).size() == 1) {
+                    quarterMap.get(i).add(new Field(-1, "", new Point(baseX, baseY), 0));
+                    quarterMap.get(i).add(new Field(-1, "", new Point(baseX + 5 * xSign, baseY), 0));
                 }
                 else {
-                    boundaryPointsQuarters.get(i).add(new Point(baseX, baseY));
-                    boundaryPointsQuarters.get(i).add(new Point(baseX + 5 * xSign, baseY));
-                    boundaryPointsQuarters.get(i).add(new Point(baseX, baseY + 5 * ySign));
+                    quarterMap.get(i).add(new Field(-1, "", new Point(baseX, baseY), 0));
+                    quarterMap.get(i).add(new Field(-1, "", new Point(baseX + 5 * xSign, baseY), 0));
+                    quarterMap.get(i).add(new Field(-1, "", new Point(baseX, baseY + 5 * ySign), 0));
                 }
             }
         }
