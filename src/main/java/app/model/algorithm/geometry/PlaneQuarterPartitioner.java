@@ -89,8 +89,25 @@ public class PlaneQuarterPartitioner {
         boundaryPointsQuarters.clear();
         checkBoundaryPointsForQuarters();
         for(int i = 0; i < 4; i++){
-            ConvexHull convexHull = new ConvexHull(quarterMap.get(i));
-            this.boundaryPointsQuarters.put(i, convexHull.createConvexHull());
+            try{
+                ConvexHull convexHull = new ConvexHull(quarterMap.get(i));
+                this.boundaryPointsQuarters.put(i, convexHull.createConvexHull());
+            }
+            catch(Exception e){
+                // jeżeli brakuję punktów do utworzenia otoczki to dodajemy odpowiednią ilość w zależności od tego ile punktów znajduje się w boundaryPointsQuaters
+                // Określenie znaku x/y dla ćwiartki
+                int xSign = (i == 0 || i == 3) ? 1 : -1;
+                int ySign = (i == 0 || i == 1) ? 1 : -1;
+                // Bazowy punkt w ćwiartce (10 jednostek od środka)
+                int baseX = centerPoint.x + xSign * 10;
+                int baseY = centerPoint.y + ySign * 10;
+                quarterMap.get(i).add(new Field(-1, "", new Point(baseX, baseY), 0));
+                quarterMap.get(i).add(new Field(-1, "", new Point(baseX + 5 * xSign, baseY), 0));
+                quarterMap.get(i).add(new Field(-1, "", new Point(baseX, baseY + 5 * ySign), 0));
+
+                ConvexHull convexHull = new ConvexHull(quarterMap.get(i));
+                this.boundaryPointsQuarters.put(i, convexHull.createConvexHull());
+            }
         }
     }
 
