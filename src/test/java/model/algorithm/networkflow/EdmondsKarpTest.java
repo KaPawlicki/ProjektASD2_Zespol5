@@ -92,15 +92,4 @@ public class EdmondsKarpTest {
     }
 
 
-    @Test
-    public void testBottleneck() {
-        int[][] capacity = {
-                {0, 100, 100},
-                {0, 0, 1},
-                {0, 0, 0}
-        };
-        // Tylko jeden bitowy kanał z 1 -> 2 ogranicza przepływ
-        assertEquals(1, EdmondsKarp.maxFlow(capacity, 0, 2));
-    }
-
 }

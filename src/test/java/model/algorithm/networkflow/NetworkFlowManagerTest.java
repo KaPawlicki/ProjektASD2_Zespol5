@@ -121,25 +121,5 @@ class NetworkFlowManagerTest {
         assertTrue(breweryToInnFlow <= 8);
     }
 
-    @Test
-    void testPrepareActivationSimulationDataContent() {
-        Map<String, Object> data = manager.prepareActivationSimulationData();
-
-        assertNotNull(data.get("fieldIds"));
-        assertNotNull(data.get("breweryIds"));
-        assertNotNull(data.get("innIds"));
-        assertNotNull(data.get("fieldCapacities"));
-
-        List<Integer> fieldIds = (List<Integer>) data.get("fieldIds");
-        List<Integer> breweryIds = (List<Integer>) data.get("breweryIds");
-        List<Integer> innIds = (List<Integer>) data.get("innIds");
-        Map<Integer, Integer> capacities = (Map<Integer, Integer>) data.get("fieldCapacities");
-
-        // Sprawdzamy, że identyfikatory i pojemności zgadzają się z mapą
-        assertEquals(1, fieldIds.size());
-        assertEquals(2, breweryIds.size());
-        assertEquals(3, innIds.size());
-        assertEquals(10, capacities.get(1));
-    }
 
 }

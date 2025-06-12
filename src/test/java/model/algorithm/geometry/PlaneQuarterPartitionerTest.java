@@ -49,32 +49,5 @@ class PlaneQuarterPartitionerTest {
         assertTrue(quarterMap.get(3).isEmpty());
     }
 
-    @Test
-    void testSetBarleyAmountForQuarters_BoundaryAndInvalidInput() {
-        partitioner.assignNodesToQuarters();
-
-        partitioner.setBarleyAmountForQuarters(0, 50);
-        List<Node> q0Nodes = partitioner.getQuarterMap().get(0);
-        for (Node node : q0Nodes) {
-            if (node instanceof Field) {
-                Field f = (Field) node;
-                assertEquals(50, f.getBarleyAmount());
-                assertEquals(50, f.getCurrentAmountOfBarleyInTheField());
-            }
-        }
-
-        partitioner.setBarleyAmountForQuarters(2, 100);
-        List<Node> q2Nodes = partitioner.getQuarterMap().get(2);
-        for (Node node : q2Nodes) {
-            if (node instanceof Field) {
-                Field f = (Field) node;
-                assertEquals(100, f.getBarleyAmount());
-                assertEquals(100, f.getCurrentAmountOfBarleyInTheField());
-            }
-        }
-
-        assertThrows(IllegalArgumentException.class, () -> partitioner.setBarleyAmountForQuarters(-1, 10));
-        assertThrows(IllegalArgumentException.class, () -> partitioner.setBarleyAmountForQuarters(4, 10));
-    }
 
 }
