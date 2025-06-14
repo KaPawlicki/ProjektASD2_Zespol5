@@ -252,7 +252,7 @@ public class SimulationResultScreenController {
         speechList.add(new Pair<>('A', ""));
         speechList.add(new Pair<>('S', "Dobrze, dobrze… Ale co z ćwiartkami Shire? Peregrin opowiadał, że w jednej codziennie pada, a w innej susza, że aż ziemia pęka. " +
                 "Mówił też, że różnie z nawozem — jedni mają najlepszy kompost, inni tylko popiół z ogniska… " +
-                "Nie możemy przecież zakładać, że każde wszedzie rodzi sie tyle samo jęczmienia!\n"));
+                "Nie możemy przecież zakładać, że wszedzie rodzi sie tyle samo jęczmienia!\n"));
         speechList.add(new Pair<>('A', "I słusznie, panie Burmistrzu. Wzięliśmy to pod uwagę. " +
                 "Dla każdej ćwiartki wyznaczyliśmy współczynnik urodzajności — zależny od pogody i nawożenia, o których wspominał Peregrin. " +
                 "Na jego podstawie mnożymy bazową ilość jęczmienia, jaką rodzi każde pole, w zależności od tego, w której ćwiartce się znajduje.\n"));

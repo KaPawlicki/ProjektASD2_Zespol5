@@ -54,7 +54,7 @@
 }
 
 .bottomContainer {
-    -fx-pref-height: 230;
+    -fx-pref-height: 370;
     -fx-background-color: rgba(39, 36, 36, 0.75);
     -fx-opacity: 0;
 }
@@ -72,20 +72,19 @@
 
 TextFlow {
     -fx-pref-width: 800;
-    -fx-pref-height: 170;
-    -fx-max-height: 170;
-    -fx-min-height: 170;
-    -fx-overflow: hidden;
+    -fx-pref-height: 310;
+    -fx-max-height: 310;
+    -fx-min-height: 310;
 }
 
 Text {
     -fx-fill: white;
-    -fx-font-size: 25;
+    -fx-font-size: 18;
 }
 
 .highlitedWord {
     -fx-fill: red;
-    -fx-font-size: 25;
+    -fx-font-size: 18;
 }
 
 .exitButton {

@@ -20,7 +20,7 @@
             styleClass="root">
 
     <AnchorPane styleClass="mainContainer" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-        <VBox styleClass="algorithmChoiceContainer" AnchorPane.topAnchor="95" AnchorPane.leftAnchor="60">
+        <VBox styleClass="algorithmChoiceContainer" AnchorPane.topAnchor="55" AnchorPane.leftAnchor="60">
             <fx:define>
                 <ToggleGroup fx:id="algorithmChoice" />
             </fx:define>
@@ -31,19 +31,19 @@
             <RadioButton text="Boyer-Moore" toggleGroup="$algorithmChoice" styleClass="radioButton"/>
             <RadioButton text="Algorytm naiwny" toggleGroup="$algorithmChoice" styleClass="radioButton"/>
         </VBox>
-        <HBox styleClass="searchContainer" AnchorPane.topAnchor="100" AnchorPane.rightAnchor="60">
+        <HBox styleClass="searchContainer" AnchorPane.topAnchor="60" AnchorPane.rightAnchor="60">
             <TextField fx:id="searchField" promptText="Wyszukaj..."/>
             <Button fx:id="searchButton"/>
         </HBox>
-        <AnchorPane fx:id="bottomContainer" styleClass="bottomContainer" AnchorPane.bottomAnchor="50" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+        <AnchorPane fx:id="bottomContainer" styleClass="bottomContainer" AnchorPane.bottomAnchor="20" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
             <Label fx:id="occurrenceCounter" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="90"/>
 <!--            <Label AnchorPane.topAnchor="10" AnchorPane.rightAnchor="90">14.05.2025 13:27</Label>-->
-            <HBox styleClass="resultsBox" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+            <HBox styleClass="resultsBox" AnchorPane.topAnchor="30" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
                 <Button fx:id="prevButton" styleClass="prevButton"/>
                 <TextFlow>
-                    <Text fx:id="textBeforeFoundWord" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris euismod lectus sit amet " />
-                    <Text fx:id="foundWord" text="lobortis" styleClass="highlitedWord"/>
-                    <Text fx:id="textAfterFoundWord" text=" porttitor. Pellentesque aliquet vestibulum justo, dictum pulvinar libero accumsan ac. C" />
+                    <Text fx:id="textBeforeFoundWord"/>
+                    <Text fx:id="foundWord" styleClass="highlitedWord"/>
+                    <Text fx:id="textAfterFoundWord"/>
                 </TextFlow>
                 <Button fx:id="nextButton" styleClass="nextButton"/>
             </HBox>
